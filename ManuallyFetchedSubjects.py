@@ -2,6 +2,8 @@
 import json
 
 x = []
+
+# 1 Semestre:
 x.append({
     "codigo": "CIC0004",
     "nome": "ALGORITMOS E PROGRAMAÇÃO DE COMPUTADORES",
@@ -11,7 +13,7 @@ x.append({
 x.append({
     "codigo": "IFD0171",
     "nome": "FISICA 1",
-    "ementa": "Módulos 1: Unidades e grandezas físicas 2: Vetores 3: Movimento retilineo 4: Movimento em duas e três dimensoes 5: Leis de Newton do movimento 6: Aplicação das Leis de Newton 7: Trabalho e Energia Cinetica ´ 8: Energia potencial e conservação de energia 9: Momento linear e impulso 10: Colisões 11: Rotação de corpos rígidos 12:Dinamica do movimento de rotação.",
+    "ementa": "Módulos 1: Unidades e grandezas físicas 2: Vetores 3: Movimento retilineo 4: Movimento em duas e três dimensoes 5: Leis de Newton do movimento 6: Aplicação das Leis de Newton 7: Trabalho e Energia Cinetica 8: Energia potencial e conservação de energia 9: Momento linear e impulso 10: Colisões 11: Rotação de corpos rígidos 12:Dinamica do movimento de rotação.",
     "conteudo": "I-MEDICAO: GRANDEZAS, PADROES E UNIDADES FISICAS. O SISTEMA INTERNACIONAL DE UNIDADES. PADRAO DE COMPRIMENTO, MASSA E TEMPO. II-VETORES: CARACTERIZACAO DE GRANDEZA VETORIAL. VETORES UNITARIOS. OPERACOES COM VETORES. III-CINEMATICA DA PARTICULA: CONSIDERACOES ENVOLVIDAS NA CINEMATICA DA PARTICULA. CONCEITO DE DIFERENCIACAO E SUA APLICACAO A PROBLEMAS DE MECANICA. EQUACOES DE MOVIMENTO. REPRESENTACAO VETORIAL. MOVIMENTO CIRCULAR UNIFORME. VELOCIDADE E ACELERACAO RELATIVAS. IV-DINAMICA DA PARTICULA: A PRIMEIRA LEI DE NEWTON. OS CONCEITOS DE FORCA E MASSA. A SEGUNDA LEI DE NEWTON. A TERCEIRA LEI DE NEWTON. SISTEMAS DE UNIDADES. FORCAS DE ATRITO. DINAMICA DO MOVIMENTO CIRCULAR UNIFORME. CLASSIFICACAO DAS FORCAS. MECANICA CLASSICA, RELATIVISTICA E QUANTICA. V-TRABALHO E ENERGIA. CONSERVACAO DA ENERGIA. TRABALHO REALIZADO POR UMA FORCA CONSTANTE. CONCEITO DE INTEGRACAO E SUA APLICACAO A PROBLEMAS EM MECANICA. TRABALHO REALIZADO POR FORCA VARIAVEL. ENERGIA CINETICA. TEOREMA TRABALHO-ENERGIA-POTENCIA. FORCAS CONSERVATIVAS E NAO CONSERVATIVAS. ENERGIA POTENCIAL. CONSERVACAO DE ENERGIA. MASSA E ENERGIA. VI-CONSERVACAO DO MOMENTO LINEAR: CENTRO DE MASSA E SEU MOVIMENTO. MOVIMENTO LINERAR. CONSERVACAO DO MOMENTO LINEAR. SISTEMAS DE MASSA VARIAVEL. VII-COLISOES: CONCEITO DE COLISAO. IMPULSO E MOMENTO LINEAR. CONSERVACAO DO MOMENTO LINEAR DURANTE AS COLISOES. SECAO EFICAZ DE CHOQUE. VIII-CINEMATICA DE ROTACAO : AS VARIAVEIS DA CINEMATICA DA ROTACAO. ROTACAO COM ACELERACAO ANGULAR CONSTANTE. GRANDEZAS VETORIAIS NA ROTACAO. RELACAO ENTRE CINEMATICA LINEAR E ANGULAR DE UMA PARTICULA EM MOVIMENTO CIRCULAR . IX-EQUILIBRIO DE CORPOS RIGIDOS: CONCEITO DE CORPO RIGIDO. EQUILIBRIO. CENTRO DE GRAVIDADE. EQUILIBRIO DE CORPOS RIGIDOS NA PRESENCA DO CAMPO GRAVITACIONAL.",
 })
 x.append({
@@ -26,12 +28,14 @@ x.append({
     "ementa": "Funções de uma variável real, limite e continuidade, derivada, integral, aplicações da integral.",
     "conteudo": "1. Funções: conceito de função exemplo de funções de uma variável real tipos de funções gráficos função composta função inversa funções trigonométricas e suas inversas função exponencial função logaritmo2. Limite e continuidade: conceito de limite propriedades dos limites limites laterais limites envolvendo o infinito continuidade Teorema do Valor Intermediário3. Derivadas: conceito de derivada reta tangente e reta normal derivadas laterais regras básicas de derivação regra da cadeia taxas relacionadas derivada da função inversa derivação implícita comportamento de funções máximos e mínimos Teorema do Valor Médio regras de l'Hospital concavidade, inflexão e gráficos problemas de otimização4. Integrais: primitivas integrais indefinidas e suas propriedades integral definida e suas propriedades Teorema Fundamental do Cálculo integração por substituição integração por partes integração por frações parciais integração de produtos de funções trigonométricas integração por substituição inversa integração por substituições especiais.5. Aplicações da integral: aplicações da integral ao cálculo de áreas planas, comprimento de curvas, volumes e áreas de sólidos.",
 })
+# ? Opcional, mas é para deixar! :
 x.append({
     "codigo": "ENM0133",
     "nome": "INTRODUCAO A ENGENHARIA MECATRONICA",
     "ementa": "A Universidade de Brasília. Engenharia, Controle e Automação, e as Diretrizes Curriculares Nacionais. Estrutura curricular do curso. Atividades Extracurriculares. Palestras motivadoras.",
     "conteudo": "",
 })
+# ? Cadeia 2: QUIMICA GERAL TEORICA 60h + QUIMICA GERAL EXPERIMENTAL 30h: 90h de 90h
 x.append({
     "codigo": "IQD0125",
     "nome": "QUIMICA GERAL TEORICA",
@@ -44,6 +48,8 @@ x.append({
     "ementa": "CARACTERIZACAO DA NATUREZA E DO PAPEL DAS INVESTIGACOES EXPERIMENTAIS EM QUIMICA. ESTUDO DE MEDIDAS E DE ALGARISMOS SIGNIFICATIVOS. DE-SENVOLVIMENTO DE HABILIDADES DE MANUSEIO DE APARELHOS VOLUMETRICOS, DESISTEMAS DE FILTRACAO, DE SISTEMAS DE DESTILACAO E DE PROCESSO QUIMICOS.DESENVOLVIMENTO DO ESPIRITO DE OBSERVACAO, ANALISE E INTERPRETACAO DEFENOMENOS QUIMICOS. ESTUDO EXPERIMENTAL DE PROCESSOS QUIMICOS ELEMENTARES.",
     "conteudo": "1) Noções Básicas sobre Segurança no Trabalho em Laboratório de Química.2) Apresentação de Equipamentos, Materiais e Vidrarias a Serem Utilizados Durante a Execução dos Experimentos Propostos.3) Realização de Experimentos Representativos sobre Temas que Reforcem o Aprendizado de Conceitos Fundamentais de Química, tais como: Reação Química Equilíbrio Químico Cinética Química Conceitos de Ácidos e Bases Oxi-Redução Termoquímica Eletroquímica etc.4) Execução de Experimentos Simples e que Correlacionem o Aspecto Conceitual ao Cotidiano no que se Refere a Análise e/ou Preparação de Materiais, tais como: Polímeros, Pigmentos e Corantes, Metais, Alimentos, Bebidas, Medicamentos, Cosméticos, Detergentes.",
 })
+
+# 2 Semestre:
 x.append({
     "codigo": "ENM0131",
     "nome": "DESENHO MECANICO ASSISTIDO POR COMPUTADOR 1",
@@ -80,6 +86,8 @@ x.append({
     "ementa": "Sistemas lineares e matrizes Espaços vetoriais Produto interno Transformações lineares Autovalores e autovetores Diagonalização de operadores Aplicações.",
     "conteudo": "1. Sistemas lineares e matrizes: operações elementares e forma escada inversão de matrizes por operações elementares determinantes e suas propriedades2. Espaços vetoriais: vetores no plano e no espaço espaços euclidianos R^2 e R^3 produto escalar projeções produto vetorial volume de paralelepípedos retas e planos espaços e subespaços vetoriais combinação linear, dependência e independência linear base de um espaço vetorial3. Produto interno: definição de produto interno exemplos norma, ângulo entre vetores processo de ortogonalização de Gram-Schmidt 4. Transformações lineares: transformações lineares do plano no plano aplicações lineares e matrizes mudança de base5. Autovalores e autovetores: definição de autovalores e autovetores polinômio caracteristico6. Diagonalização de operadores: base de autovetores transformações ortogonais7. Aplicações",
 })
+
+# 3 Semestre:
 x.append({
     "codigo": "CIC0090",
     "nome": "ESTRUTURAS DE DADOS",
@@ -110,6 +118,21 @@ x.append({
     "ementa": "Vetores no plano e no espaço funções de várias variáveis fórmula de Taylor e aplicações transformações diferenciáveis o teorema da função inversa e da função Implícita.",
     "conteudo": "1. Vetores no plano e no espaço: conceito e propriedades. Produto escalar, Vetorial e misto, projeções. Vetor tangente e normal unitários. Vetores velocidade e aceleração. Aplicações. Campos vetoriais no plano e no espaço2. Funções de várias variáveis (com ênfase em funções de duas e três variáveis): gráficos, curvas de nível e superfícies de nível. Limites e continuidade: conceito, propriedades e interpretação geométrica e como taxa de variação. Derivadas parciais: conceito, propriedades, interpretação geométrica e como taxa de variação, derivadas parciais de ordem superior, igualdade entre derivadas mistas. Diferenciabilidade e a diferencial total: conceito, propriedades, interpretação geométrica. Plano tangente. Regra da Cadeia e derivação implícita. Derivadas direcionais e vetor gradiente: conceito, propriedades, interpretação geométrica e como taxa de variação3. Fórmula de Taylor, pontos de extremos locais e absolutos. Pontos críticos. Multiplicadores de Lagrange. Aplicações em problemas de otimização4. Transformações diferenciáveis: a derivada como transformação linerar, Matrizes e Determinantes Jacobianos, A regra da cadeia geral, Teorema da Função Inversa, Teorema da função Implícita, derivação implícita5. Integrais múltiplas: Integrais duplas: conceito, propriedades, integração por iteração, cálculo de áreas, volumes e outras aplicações, integrais duplas em coordenadas polares, transformações no plano, o Jacobiano de uma transformação, mudanças de coordenadas em integrais duplas. Integrais triplas: conceito, propriedades, integração por iteração, cálculo de volumes e outras aplicações, Integrais triplas em coordenadas cilíndricas e esféricas, transformações no espaço, o Jacobiano de uma transformação, mudanças de coordenadas em integrais triplas6. Integrais de linha: curvas parametrizadas no plano e no espaço, parametrização de gráficos de funções, segmentos de retas, arcos de circunferências, arcos de elipses e outras curvas básicas. Integrais de linha de campos vetoriais: conceito, propriedades. Cálculo de integrais de linha por parametrização. Campos gradientes, função potencial e integrais de linha. Teorema de Green. Aplicações: cálculo do trabalho de um campo de forças e outras aplicações7. Integrais de superfícies, Teorema da Divergência e Teorema de Stokes: parametrização de gráficos de funções, superfícies de revolução, superfícies esféricas, superfícies planas e outras superfícies básicas. Vetores normais a uma superfície e superfície suave. Integrais de superfície: conceito e propriedades, cálculo de integrais de superfícies parametrizadas, cálculo de áreas de superfície e outras aplicações. Teorema da Divergência e de Stokes: fluxo de um campo vetorial através de uma superfície, superfícies orientáveis e superfícies com bordo, Teorema da Divergência e a Lei de Gauss para campos de quadrado inverso, Teorema de Stokes e aplicações.",
 })
+# ? Cadeia 6: SINAIS E SISTEMAS EM TEMPO CONTÍNUO (60h) + INTRODUÇÃO AOS CIRCUITOS ELÉTRICOS (30h) = 90h
+x.append({
+    "codigo": "ENE0067",
+    "nome": "SINAIS E SISTEMAS EM TEMPO CONTÍNUO",
+    "ementa": "Sinais e sistemas. Análise no domínio do tempo de sistemas de tempo contínuo. Análise de sistemas de tempo contínuo usando a transformada de Laplace. Análise de sinais periódicos de tempo contínuo: a série de Fourier. Análise de sinais aperiódicos de tempo contínuo: a transformada de Fourier. Análise no espaço de estados de sistemas de tempo contínuo.",
+    "conteudo": "1. SINAIS E SISTEMAS1.1. Introdução1.2. Tamanho de um sinal1.3. Classificação de sinais1.4. Algumas operações com sinais1.5. Funções pares e ímpares1.6. Sistemas1.7. Classificação de sistemas1.8. Modelagem de sistema: descrição entrada-saída1.9. Descrições interna e externa de um sistema1.10. Descrição interna: a descrição no espaço de estados2. ANÁLISE NO DOMÍNIO DO TEMPO DE SISTEMAS DE TEMPO CONTÍNUO2.1. Introdução2.2. Resposta de um sistema às condições internas: a resposta com entrada zero2.3. Resposta ao impulso unitário2.4. Resposta ao degrau unitário2.5. Resposta de um sistema a uma excitação externa: a resposta com estado zero2.6. Solução clássica de equações diferenciais2.7. Estabilidade de sistemas2.8. Insights intuitivos sobre comportamento de um sistema3. ANÁLISE DE SISTEMAS DE TEMPO CONTÍNUO USANDO A TRANSFORMADA DE LAPLACE3.1. A transformada de Laplace3.2. Algumas propriedades da transformada de Laplace3.3. Solução de equações diferenciais e integro-diferenciais3.4. Análise de circuitos elétricos: o circuito transformado3.5. Diagramas de bloco3.6. Realização de sistemas3.7. Aplicação em realimentação e controle3.8. Resposta de frequência de um sistema LIT3.9. Diagramas de Bode3.10. Projeto de filtros pelo posicionamento dos pólos e zeros de H(s)3.11. A transformada de Laplace bilateral4. ANÁLISE DE SINAIS PERIÓDICOS DE TEMPO CONTÍNUO: A SÉRIE DE FOURIER4.1. Representação de sinais periódicos pela série de Fourier trigonométrica4.2. Existência e convergência da série de Fourier 4.3. Série de Fourier exponencial4.4. Resposta de um sistema LIT a entradas periódicas4.5. Série de Fourier generalizada: sinais e vetores4.6. Cálculo numérico dos coeficientes da série de Fourier exponencial 5. ANÁLISE DE SINAIS APERIÓDICOS DE TEMPO CONTÍNUO: A TRANSFORMADA DE FOURIER5.1. Representação de sinais aperiódicos pela integral de Fourier5.2. Transformadas de algumas funções5.3. Algumas propriedades da transformada de Fourier5.4. Transmissão de sinais através de sistemas LIT5.5. Filtros ideais e práticos5.6. Energia de um sinal5.7. Aplicação em comunicações: modulação de amplitude5.8. Truncamento de sinais: funções-janelas6. ANÁLISE NO ESPAÇO DE ESTADOS DE SISTEMAS DE TEMPO CONTÍNUO6.1. Introdução6.2. Um procedimento sistemático para determinar as equações de estado6.3. Solução das equações de estado6.4. Transformação linear de vetores de estado6.5. Controlabilidade e observabilidade",
+})
+x.append({
+    "codigo": "ENE0066",
+    "nome": "INTRODUÇÃO AOS CIRCUITOS ELÉTRICOS",
+    "ementa": "Conceitos básicos.Lei de Ohm.Leis de Kirchhoff.Circuitos resistivos.Técnicas de análise nodal e de laço.Amplificadores Operacionais.Princípio da superposição.Teoremas de Thévenin e de Norton.",
+    "conteudo": "Conceitos básicos- Sistemas de unidades- Grandezas básicas- Componentes de circuitos Circuitos resistivos- Lei de Ohm- Leis de Kirchhoff - Circuitos de laço único- Circuitos com um par de nós- Combinação de resistores- Transformações delta? estrela- Circuitos com fontes dependentes Técnicas de análise nodal e de malhas- Introdução- Análise nodal- Análise de malhas Amplificadores Operacionais- Introdução- Modelos de amplificadores operacionais- Circuitos básicos com amp-op Técnicas adicionais de análise- Princípio da superposição- Transformação de fontes- Teoremas de Thévenin e de Norton- Máxima transferência de energia",
+})
+
+## 4 Semestre:
 x.append({
     "codigo": "CIC0229",
     "nome": "CIRCUITOS LÓGICOS",
@@ -140,24 +163,35 @@ x.append({
     "ementa": "Números complexos Funções de uma variável complexa A derivada A integral e aplicações Séries de potências Funções conformes",
     "conteudo": "1. Números complexos: representação geométrica valor absoluto complexo conjugado forma polar argumento a álgebra dos números complexos raízes n-ésimas2. Funções de uma variável complexa: funções complexas o conceito de limite teoremas sobre limites continuidade derivada fórmulas de derivação equações de Cauchy-Riemann funções analíticas e funções reais harmônicas as funções exponencial, trigonométricas, hiperbólicas, logarítmicas, potências com expoentes complexos inversa de funções trigonométricas as transformações bilineares propriedades de mapeamento das funções exponenciais e logarítimo 3. Integrais: contornos integrais de linha o Teorema de Cauchy Fórmula integral de Cauchy derivadas de ordem superior Teoremas de Morera, do Módulo Máximo, de Liouville, Fundamental da Álgebra4. Séries de potências: séries de Taylor e Lauren integração e derivação de séries multiplicação e divisão de séries pólos Teorema dos resíduos e aplicações5. Funções conformes: exemplos rotação de tangentes funções harmônicas conjugadas inversas aplicações",
 })
+# ? Cadeia 4, SINAIS E SISTEMAS EM TEMPO DISCRETO 60h + CIRCUITOS ELÉTRICOS 60h + LABORATÓRIO DE CIRCUITOS ELÉTRICOS 30h = 150h de 90h
 x.append({
-    "codigo": "ENE0042",
-    "nome": "CIRCUITOS ELÉTRICOS 1",
-    "ementa": "Conceitos básicos. Circuitos resistivos. Técnicas de análise nodal e de malhas. Técnicas adicionais de análise. Capacitância e indutância. Análise de circuitos de primeira e segunda ordens. Análise de circuitos em regime permanente senoidal. Análise de potência em regime permanente senoidal.",
-    "conteudo": "1 CONCEITOS BÁSICOS 1.1 Sistemas de Unidades 1.2 Grandezas básicas 1.3 Componentes de um circuito 2 CIRCUITOS RESISTIVOS 2.1 Lei de Ohm 2.2 Leis de Kirchhoff 2.3 Circuitos com uma única malha 2.4 Circuitos com um único par de nós 2.5 Circuitos com combinações de resistores em série e em paralelo 2.6 Transformações Y-Delta 2.7 Circuitos com fontes dependentes 3 TÉCNICAS DE ANÁLISE NODAL E DE MALHAS 3.1 Análise nodal 3.2 Análise de malhas 4 TÉCNICAS ADICIONAIS DE ANÁLISE 4.1 Superposição 4.2 Teoremas de Thévenin e de Norton 4.3 Transferência máxima de potência 5 CAPACITÂNCIA E INDUTÂNCIA 5.1 Capacitores 5.2 Indutores 5.3 Combinações de capacitores e de indutores 6 ANÁLISE DE CIRCUITOS DE PRIMEIRA E SEGUNDA ORDENS 6.1 Circuitos de primeira ordem 6.2 Circuitos de segunda ordem 7 ANÁLISE DE CIRCUITOS EM REGIME PERMANENTE SENOIDAL 7.1 Senoides 7.2 Funções forçantes senoidais e complexas 7.3 Fasores 7.4 Relações fasoriais para elementos de circuito 7.5 Impedância e admitância 7.6 Diagramas de fasores 7.7 Análise nodal e de malhas de circuitos em regime permanente senoidal 8 ANÁLISE DE POTÊNCIA EM REGIME PERMANENTE SENOIDAL 8.1 Potência instantânea 8.2 Potência média 8.3 Valores eficazes ou RMS 8.4 Fator de potência 8.5 Potência complexa 8.6 Correção do fator de potência",
+    "codigo": "ENE0068",
+    "nome": "SINAIS E SISTEMAS EM TEMPO DISCRETO",
+    "ementa": "Sinais e sistemas de tempo discreto. Análise no domínio do tempo de sistemas de tempo discreto. Análise de sistemas de tempo discreto usando a transformada z. Amostragem: a ponte entre contínuo e discreto. Análise de Fourier de sinais de tempo discreto. Análise no espaço de estados de sistemas de tempo discreto.",
+    "conteudo": "1. SINAIS E SISTEMAS DE TEMPO DISCRETO1.1. Introdução1.2. Classificação de sinais1.3. Algumas operações com sinais1.4. Sistemas de tempo discreto1.5. Propriedades dos sistemas de tempo discreto1.6. Exemplos de sistemas de tempo discreto2. ANÁLISE NO DOMÍNIO DO TEMPO DE SISTEMAS DE TEMPO DISCRETO2.1. Introdução2.2. Equações de sistemas de tempo discreto2.3. Resposta de um sistema às condições internas: a resposta com entrada zero2.4. Resposta ao impulso unitário2.5. Resposta ao degrau unitário2.6. Resposta de um sistema a uma excitação externa: a resposta com estado zero2.7. Solução clássica de equações de diferenças lineares2.8. Estabilidade de sistemas: o critério BIBO2.9. Insights intuitivos sobre comportamento de um sistema3. ANÁLISE DE SISTEMAS DE TEMPO DISCRETO USANDO A TRANSFORMADA Z3.1. A transformada z3.2. Algumas propriedades da transformada z3.3. Solução de equações de diferenças3.4. Realização de sistemas3.5. Resposta de frequência de sistemas LIT3.6. Resposta de frequência a partir da localização dos pólos e zeros3.7. Processamento digital de sinais analógicos3.8. Conexão entre as transformas de Laplace e z3.9. A transformada z bilateral4. AMOSTRAGEM: A PONTE ENTRE CONTÍNUO E DISCRETO4.1. O teorema da amostragem4.2. Reconstrução de sinal4.3. Conversão analógico-para-digital (A/D)4.4. Dual da amostragem temporal: a amostragem espectral4.5. Cálculo numérico da transformada de Fourier: a transformada de Fourier discreta (DFT)4.6. A transformada rápida de Fourier (FFT)5. ANÁLISE DE FOURIER DE SINAIS DE TEMPO DISCRETO5.1. Série de Fourier de tempo discreto (SFTD)5.2. Representação de sinais aperiódicos pela integral de Fourier: a transformada de Fourier de tempo discreto (TFTD) 5.3. Propriedades da TFTD5.4. Análise de sistemas LIT de tempo discreto usando a TFTD5.5. Conexão entre a TFTD e a TFTC5.6. Generalização da TFTD e a transformada z6. ANÁLISE NO ESPAÇO DE ESTADOS DE SISTEMAS DE TEMPO DISCRETO6.1. Introdução6.2. Um procedimento sistemático para determinar as equações de estado6.3. Solução das equações de estado6.4. Transformação linear de vetores de estado6.5. Controlabilidade e observabilidade",
 })
 x.append({
-    "codigo": "ENE0044",
-    "nome": "LABORATÓRIO DE CIRCUITOS ELÉTRICOS 1",
-    "ementa": "Experimentos de laboratório referente aos seguintes tópicos: Conceitos básicos. Circuitos resistivos. Técnicas de análise nodal e de malhas. Técnicas adicionais de análise. Capacitância e indutância. Análise de circuitos de primeira e segunda ordens. Análise de circuitos em regime permanente senoidal. Análise de potência em regime permanente senoidal.",
-    "conteudo": "Experimentos de laboratório referente aos seguintes tópicos: Conceitos básicos. Circuitos resistivos. Técnicas de análise nodal e de malhas. Técnicas adicionais de análise. Capacitância e indutância. Análise de circuitos de primeira e segunda ordens. Análise de circuitos em regime permanente senoidal. Análise de potência em regime permanente senoidal.",
+    "codigo": "ENE0304",
+    "nome": "CIRCUITOS ELÉTRICOS",
+    "ementa": "Capacitância e indutância.Análise de circuitos de 1ª e 2ª ordem.Análise de circuitos em regime permanente senoidal.Potência em regime permanente senoidal.Circuitos com acoplamento magnético.Desempenho dos circuitos em função da frequência.Aplicação da transformada de Laplace na análise de circuitos.Aplicação das séries e da transformada de Fourier na análise de circuitos.Quadripolos.",
+    "conteudo": "Capacitância e indutância- Capacitores- Indutores- Combinações de capacitores e indutores- Circuitos RC com amplificador operacionalAnálise de circuitos de 1ª e 2ª ordem - Circuitos de 1ª ordem- Circuitos de 2ª ordemAnálise de circuitos em regime permanente senoidal - Funções forçantes senoidais e complexas- Fasores- Impedância e admitância- Diagramas fasoriais- Análise nodal e de laços de circuitos em regime permanente senoidalPotência em regime permanente senoidal - Potência instantânea e média- Valor eficaz ou rms - Fator de potência - Potência complexa- Correção do fator de potênciaCircuitos com acoplamento magnético - Indutância mútua- Transformadores ideaisDesempenho dos circuitos em função da frequência- Análise da resposta de um circuito em função da frequência- Diagramas de Bode- Circuitos ressonantes- FiltrosAplicação da transformada de Laplace na análise de circuitos- Soluções de circuito por Laplace- Modelos dos elementos de circuito- Técnicas de análise- Função de transferência- Diagramas de pólos e zeros- Resposta de regime permanenteAplicação das séries e da transformada de Fourier na análise de circuitos - Resposta de regime permanente de um circuito excitado por sinal periódico- Uso da transformada de Fourier para determinar a resposta de um circuitoQuadripolos- Parâmetros de admitância- Parâmetros de impedância- Parâmetros híbridos- Parâmetros de transmissão- Conversões de parâmetros- Interconexão de quadripolos",
 })
 x.append({
-    "codigo": "MAT0059",
-    "nome": "METODOS MATEMÁTICOS DA FÍSICA 1",
-    "ementa": "ALGUMAS EQUACOES DA FISICA MATEMATICA. SERIES DE FOURIER. APLICACOES DE SERIES DE FOURIER AOS PROBLEMAS DE CONTORNO. TRANSFORMADA DE FOURIER E APLICACOES. SERIES DE FUNCOES ORTOGONAIS. OS POLINOMIOS DE LEGENDRE.",
-    "conteudo": "1. EQUACAO DA ONDA, EQUACAO DO CALOR E EQUACAO DE LAPLACE: DEDUCAO DESSAS EQUACOES O APARECIMENTO DAS SERIES DE FOURIER. 2. FUNCOES PERIODICAS SERIES DE FOURIER SERIES DE FOURIER DE FUNCOES PARES E IMPARES DIFERENCIACAO E INTEGRACAO DAS SERIES DE FOURIER CONVERGENCIA PONTUAL E UNIFORME DAS SERIES DE FOURIER FORMA COMPLEXA DA SERIE DE FOURIER. 3. RESOLUCAO DAS EQUACOES DO CALOR, ONDA E LAPLACE POR SERIES DE FOURIER, METODO DE SEPARACAO DE VARIAVEIS: RESOLUCAO DA EQUACAO DE CONDUCAO DE CALOR NUMA BARRA RESOLUCAO DA EQUACAO DA CORDA VIBRANTE RESOLUCAO DA EQUACAO DE LAPLACE NO DISCO UNICIDADE DE SOLUCOES. 4. TRANFORMADA DE FOURIER: PROPRIEDADES DA TRANSFORMADA DE FOURIER O TEOREMA DA CONVOLUCAO APLICACOES AOS PROBLEMAS DE VALORES INICIAIS PARA A EQUACAO DO CALOR E DA ONDA.5. ESPACO VETORIAL DE FUNCOES, PRODUTO INTERNO, ORTOGONALIDADE ORTOGONALIDADE DAS FUNCOES SECCIONALMENTE CONTINUAS CONVERGENCIAS EM L2 (NA MEDIA) CONJUNTOS COMPLETOS POLINOMIOS DE LEGENDRE PROPRIEDADES DOS POLINOMIOS DE LEGENDRE APLICACOES A PROBLEMAS DE CONTORNO.",
+    "codigo": "ENE0282",
+    "nome": "LABORATÓRIO DE CIRCUITOS ELÉTRICOS",
+    "ementa": "Experimentos de laboratório acerca dos tópicos seguir:- Lei de Ohm e leis de Kirchhoff.- Amplificadores Operacionais.- Superposição e teoremas de Thévenin e de Norton.- Circuitos de 1ª e 2ª ordem.- Circuitos em regime permanente senoidal.- Potência em regime permanente senoidal.- Circuitos com acoplamento magnético.- Desempenho dos circuitos em função da frequência.- Aplicação da transformada de Laplace na análise de circuitos.- Aplicação das séries e da transformada de Fourier na análise de circuitos.- Quadripolos.",
+    "conteudo": "Experimentos de laboratório acerca dos seguintes tópicos:- Lei de Ohm e leis de Kirchhoff- Amplificadores Operacionais- Princípio da superposição- Teoremas de Thévenin e de Norton- Circuitos de 1ª e 2ª ordem- Circuitos em regime permanente senoidal- Potência em regime permanente senoidal- Circuitos com acoplamento magnético- Desempenho dos circuitos em função da frequência- Aplicação da transformada de Laplace na análise de circuitos- Aplicação das séries e da transformada de Fourier na análise de circuitos- Quadripolos",
 })
+
+# * optativo:
+# x.append({
+#     "codigo": "MAT0059",
+#     "nome": "METODOS MATEMÁTICOS DA FÍSICA 1",
+#     "ementa": "ALGUMAS EQUACOES DA FISICA MATEMATICA. SERIES DE FOURIER. APLICACOES DE SERIES DE FOURIER AOS PROBLEMAS DE CONTORNO. TRANSFORMADA DE FOURIER E APLICACOES. SERIES DE FUNCOES ORTOGONAIS. OS POLINOMIOS DE LEGENDRE.",
+#     "conteudo": "1. EQUACAO DA ONDA, EQUACAO DO CALOR E EQUACAO DE LAPLACE: DEDUCAO DESSAS EQUACOES O APARECIMENTO DAS SERIES DE FOURIER. 2. FUNCOES PERIODICAS SERIES DE FOURIER SERIES DE FOURIER DE FUNCOES PARES E IMPARES DIFERENCIACAO E INTEGRACAO DAS SERIES DE FOURIER CONVERGENCIA PONTUAL E UNIFORME DAS SERIES DE FOURIER FORMA COMPLEXA DA SERIE DE FOURIER. 3. RESOLUCAO DAS EQUACOES DO CALOR, ONDA E LAPLACE POR SERIES DE FOURIER, METODO DE SEPARACAO DE VARIAVEIS: RESOLUCAO DA EQUACAO DE CONDUCAO DE CALOR NUMA BARRA RESOLUCAO DA EQUACAO DA CORDA VIBRANTE RESOLUCAO DA EQUACAO DE LAPLACE NO DISCO UNICIDADE DE SOLUCOES. 4. TRANFORMADA DE FOURIER: PROPRIEDADES DA TRANSFORMADA DE FOURIER O TEOREMA DA CONVOLUCAO APLICACOES AOS PROBLEMAS DE VALORES INICIAIS PARA A EQUACAO DO CALOR E DA ONDA.5. ESPACO VETORIAL DE FUNCOES, PRODUTO INTERNO, ORTOGONALIDADE ORTOGONALIDADE DAS FUNCOES SECCIONALMENTE CONTINUAS CONVERGENCIAS EM L2 (NA MEDIA) CONJUNTOS COMPLETOS POLINOMIOS DE LEGENDRE PROPRIEDADES DOS POLINOMIOS DE LEGENDRE APLICACOES A PROBLEMAS DE CONTORNO.",
+# })
+
+## 5 Semestre
 x.append({
     "codigo": "ENE0047",
     "nome": "CONVERSÃO ELETROMECÂNICA DE ENERGIA",
@@ -188,24 +222,16 @@ x.append({
     "ementa": "FUNDAMENTOS DE FENÔMENOS DE TRANSPORTE.PROPRIEDADES DOS FLUIDOS E DOS MEIOS CONTÍNUOS. GASES PERFEITOS, PRIMEIRA E SEGUNDALEIS DA TEERMODINÂMICA E CICLOS OPERATIVOS. ESTÁTICA DOS FLUIDOSMANOMETRIA, ANÁLISE DE ESCOAMENTOS. LEIS BÁSICAS PARA SISTEMAS EVOLUMES DE CONTROLE . TRANSPORTE DE CALOR: FUNDAMENTOS DE CONDUÇÃO, CONVECÇÃO E RADIAÇÃO TÉRMICA.",
     "conteudo": "I - FUNDAMENTOS# Introdução# Fundamentos de Fenômenos de Transporte# Propriedades dos Fluidos e dos Meios Contínuos.II - TERMODINÂMICA# Gases Perfeitos, Calor e Trabalho# Primeira Lei da Termodinâmica# Entropia# Segunda Lei da termodinâmica# Ciclos operativos# Aula em Laboraatório.III- MECÂNICA DOS FLUIDOS# Estática dos Fluídos# Manometria# Aula em Laboratório - Medição de Pressão# Fundamentos da Análise de Escoamento# Leis Básicas para Sistemas e Volumes de Controle# Aula em Laboratório - Vazão e Perda de Carga.IV - MEIOS NÃO ESTACIONÁRIO# Condução de Calor Estacionário# Aula Laboratório# Condução de Calor não Estacionário# Aula em Laboratório - Medição de temperatura# Transferência de Calor por Convecção Livre# Radiação Térmica# Difusão.",
 })
-x.append({
-    "codigo": "ENE0037",
-    "nome": "CIRCUITOS ELÉTRICOS 2",
-    "ementa": "Redes magneticamente acopladas. Desempenho das redes em função da frequência. Amplificadores operacionais. A transformada de Laplace. Aplicação da transformada de Laplace na análise de circuitos. Técnicas de análise usando as séries e a transformada de Fourier. Quadripolos.",
-    "conteudo": "1 REDES MAGNETICAMENTE ACOPLADAS 1.1 Indutância mútua 1.2 Análise através da energia 1.3 Transformador ideal 2 DESEMPENHO DAS REDES EM FUNÇÃO DA FREQUÊNCIA 2.1 Análise da resposta no domínio da frequência 2.2 Análise no domínio da frequência das funções senoidais 2.3 Circuitos ressonantes 2.4 Escalonamento 2.5 Filtros 3 AMPLIFICADORES OPERACIONAIS 3.1 Introdução 3.2 Modelos de amp-op 3.3 Circuitos fundamentais com amp-op 3.4 Comparadores 4 A TRANSFORMADA DE LAPLACE 4.1 Definição 4.2 Duas importantes funções singulares 4.3 Pares de transformada 4.4 Propriedades da transformada 4.5 A transformada inversa 4.6 Integral de convolução 4.7 Teoremas do valor inicial e do valor final 5 APLICAÇÃO DA TRANSFORMA DE LAPLACE NA ANÁLISE DE CIRCUITOS 5.1 Soluções de circuitos usando a transformada de Laplace 5.2 Modelos dos componentes de circuito 5.3 Técnicas de análise 5.4 Função de transferência 5.5 Relação entre o diagrama de pólos e zeros e o diagrama de Bode 5.6 Resposta no regime estacionário 6 TÉCNICAS DE ANÁLISE USANDO AS SÉRIES E A TRANSFORMADA DE FOURIER 6.1 Séries de Fourier 6.2 Transformada de Fourier 7 QUADRIPOLOS 7.1 Parâmetros de admitância 7.2 Parâmetros de impedância 7.3 Parâmetros híbridos 7.4 Parâmetros de transmissão 7.5 Conversão de parâmetros 7.6 Interconexão de quadripolos",
-})
-x.append({
-    "codigo": "ENE0038",
-    "nome": "LABORATÓRIO DE CIRCUITOS ELÉTRICOS 2",
-    "ementa": "Experimentos de laboratório referente aos seguintes tópicos: Redes magneticamente acopladas. Desempenho das redes em função da frequência. Amplificadores operacionais. A transformada de Laplace. Aplicação da transformada de Laplace na análise de circuitos. Técnicas de análise usando as séries e a transformada de Fourier. Quadripolos.",
-    "conteudo": "Experimentos de laboratório referente aos seguintes tópicos: Redes magneticamente acopladas. Desempenho das redes em função da frequência. Amplificadores operacionais. A transformada de Laplace. Aplicação da transformada de Laplace na análise de circuitos. Técnicas de análise usando as séries e a transformada de Fourier. Quadripolos.",
-})
-x.append({
-    "codigo": "MAT0053",
-    "nome": "CALCULO NUMERICO",
-    "ementa": "ZEROS DE FUNCOES. ZEROS DE POLINOMIOS SISTEMAS DE EQUACOES LINEARES. INVERSAO DE MATRIZES AJUSTE DE CURVAS. INTERPOLACAO INTEGRACAO NUMERICA RESOLUCAO NUMERICA DE EQUACOES DIFERENCIAIS ORDINARIAS.",
-    "conteudo": "ZEROS DE FUNCOES REAIS: ISOLAMENTO DE RAIZES, METODO DA BISSECAO, METODO ITERATIVO LINEAR, METODO DE NEWTON RAPHSON. CONSIDERACOES SOBRE ERRO. ZEROS DE POLINOMIOS. RESOLUCAO DE SISTEMAS DE EQ. LINEARES: METODO DE ELIMINACAO DE GAUSS, METODO ITERATIVO DE GAUSS-JACOBI, METODO ITERATIVO DE GAUSS-SEIDEL. COMPARACAO DOS METODOS. INVERSAO DE MATRIZES. AJUSTE DE CURVAS: O METODO DOS QUADRADOS MINIMOS. INTERPOLACAO POLINOMIAL: O METODO DE LAGRANGE E O METODO DE NETON. CONSIDERACOES SOBRE ERROS. INTEGRACAO NUMERICA: AS FORMULAS DE NEWTON-COTES-TRAPEZIOS E IMPSON. ESTUDO DO ERRO. QUADRATURA GAUSSIANA. SOLUCAO NUMERICA DE EQUACOES DIFERENCIAIS ORDINARIAS: OS METODOS DE RUNGE-KUTTA. ESTUDO DO ERRO. SISTEMAS DE EQUACOES. EQUACOES DE 2a. ORDEM.",
-})
+
+# * optativo:
+# x.append({
+#     "codigo": "MAT0053",
+#     "nome": "CALCULO NUMERICO",
+#     "ementa": "ZEROS DE FUNCOES. ZEROS DE POLINOMIOS SISTEMAS DE EQUACOES LINEARES. INVERSAO DE MATRIZES AJUSTE DE CURVAS. INTERPOLACAO INTEGRACAO NUMERICA RESOLUCAO NUMERICA DE EQUACOES DIFERENCIAIS ORDINARIAS.",
+#     "conteudo": "ZEROS DE FUNCOES REAIS: ISOLAMENTO DE RAIZES, METODO DA BISSECAO, METODO ITERATIVO LINEAR, METODO DE NEWTON RAPHSON. CONSIDERACOES SOBRE ERRO. ZEROS DE POLINOMIOS. RESOLUCAO DE SISTEMAS DE EQ. LINEARES: METODO DE ELIMINACAO DE GAUSS, METODO ITERATIVO DE GAUSS-JACOBI, METODO ITERATIVO DE GAUSS-SEIDEL. COMPARACAO DOS METODOS. INVERSAO DE MATRIZES. AJUSTE DE CURVAS: O METODO DOS QUADRADOS MINIMOS. INTERPOLACAO POLINOMIAL: O METODO DE LAGRANGE E O METODO DE NETON. CONSIDERACOES SOBRE ERROS. INTEGRACAO NUMERICA: AS FORMULAS DE NEWTON-COTES-TRAPEZIOS E IMPSON. ESTUDO DO ERRO. QUADRATURA GAUSSIANA. SOLUCAO NUMERICA DE EQUACOES DIFERENCIAIS ORDINARIAS: OS METODOS DE RUNGE-KUTTA. ESTUDO DO ERRO. SISTEMAS DE EQUACOES. EQUACOES DE 2a. ORDEM.",
+# })
+
+## 6 Semestre
 x.append({
     "codigo": "CIC0099",
     "nome": "ORGANIZAÇÃO E ARQUITETURA DE COMPUTADORES",
@@ -224,6 +250,7 @@ x.append({
     "ementa": "Expressão de termos metrológicos segundo o Vocabulário Internacional de Termos Gerais e Fundamentais de Metrologia. Cálculo da incerteza de medição. Características estáticas e dinâmicas dos elementos sensores de medição. Aplicação de ponte de Wheatstone, amplificadores de sinal e filtro. Elementos transdutores. Instrumentos e técnicas de medição de deslocamento, força/torque, pressão, rotação, temperatura, vazão. Aplicação prática de sistemas de medição.",
     "conteudo": " Introdução aos sistemas de medição Descrição funcional de instrumentos de medição Transdutores ativos/passivos Aspectos tecnológicos envolvidos em sistemas de medição Arquitetura básica de um sistema de medição Causas de incertezas em sistemas de medição Tópicos em características estáticas de Sistemas de Medição Tópicos sobre calibração estática Exatidão, precisão e bias Sensibilidade estática Linearidade Threshold, Histeresis Uma metodologia para calibração estática Tópicos em filtragem e fusão de sensores  uma introdução à filtragem estocástica  Implementação de filtros de software em microcontroladores  Tópicos em fusão sensorial (Filtro de Kalman Linear- KF Tópicos em características dinâmicas de Sistemas de Mediçãoa) Instrumentos de ordem 0 Instrumentos de primeira ordem Resposta dinâmica de instrumentos de primeira ordem Instrumentos de segunda ordem Resposta dinâmica de instrumentos de segunda ordem Tópicos em calibração dinâmica de Sistemas de Medição Resposta à frequência aplicada a Sistemas de Medição Tópicos em análise no domínio da frequência Diagramas de Bode Tópicos e aplicações da Transformada de Fourier para Sistemas de Medição Teorema da Amostragem Instrumentos de Medição (temas a serem comentados durante o curso Fitas de medição extensométricas (strain-gages) Potenciômetros como sensores de deslocamento Termistores, termo-resistências e termopares Tópicos em transdutores Analisadores de Espectro Medição de voltagem, corrente, resistência Medição de torque e força Medição de pressão Medição de som",
 })
+# ? CADEIA 7, ELETRÔNICA (60h) + LABORATÓRIO DE ELETRÔNICA (30h) = 90h de 90h
 x.append({
     "codigo": "ENE0045",
     "nome": "ELETRÔNICA",
@@ -236,18 +263,23 @@ x.append({
     "ementa": "Realização de um conjunto de experiências que exijam habilidades de projeto, montagem e teste de circuitos eletrônicos que empreguem os seguintes componentes eletrônicos: amplificadores operacionais diodos de junção transistor de efeito de campo transistor de junção bipolar dispositivos opto-eletrônicos.",
     "conteudo": "Ao longo do curso deverá ser realizado um conjunto de experiências que exijam habilidades de projeto, montagem e teste de circuitos eletrônicos que empreguem os seguintes componentes eletrônicos:- amplificadores operacionais - diodos de junção - transistores de efeito de campo - transistores de junção bipolar - dispositivos opto-eletrônicos.",
 })
+# ? Cadeia 5, CONTROLE DE SISTEMAS DINÂMICOS (60h) de 90h
 x.append({
     "codigo": "ENE0077",
     "nome": "CONTROLE DE SISTEMAS DINÂMICOS",
     "ementa": "Modelagem de sistemas dinâmicos. Diagrama de blocos. Estabilidade. Especificação do projeto de controle. Análise por lugar geométrico das raízes. Projeto de controle por lugar geométrico das raízes. Análise por resposta em frequência. Projeto de controle por resposta em frequência.",
     "conteudo": "Modelagem de sistemas dinâmicos- Modelagem de circuitos elétricos, sistemas mecânicos e eletromecânicos- Linearização em ponto de operação- Função de transferência- Análise da resposta ao degrau de sistemas de 1ª e 2ª ordem.Diagramas de blocos- Representação gráfica das equações do sistema- Álgebra de diagramas de blocos.Estabilidade- Definição de estabilidade- Critério de Routh-Hurwitz.Erros de estado estacionário- Erros de estado estacionário de sistemas com retroação unitária- Constantes de erro estático e tipo do sistema- Erros de estado estacionário devido a perturbações- Erros de estado estacionário de sistemas com retroação não unitária.Técnicas do lugar geométrico das raízes- Definição do lugar geométrico das raízes- Propriedades e esboço do lugar geométrico das raízes- Projeto da resposta dinâmica- Casos especiais do lugar geométrico das raízes.Projeto por intermédio do lugar geométrico das raízes- Compensação em série para ajuste do erro de estado estacionário e da resposta transitória: projeto de compensadores em avanço, atraso, avanço-atraso e PID- Realização física da compensação.Técnicas de resposta em frequência- Conceito de resposta em frequência- Diagramas de Bode: aproximações assintóticas- Estabilidade via critério de Nyquist- Margem de ganho e margem de fase- Relação entre resposta transitória e resposta em frequência- Relação entre respostas em frequência a malha aberta e a malha fechada- Características de erro do estado estacionário a partir da resposta de frequência- Sistemas com atraso.Projeto por intermédio da resposta de frequência- Resposta transitória por intermédio do ajuste de ganho- Projeto de compensadores em avanço, atraso, avanço-atraso e PID.Métodos empíricos de sintonia de controladores- Ziegler-Nichols.",
 })
-x.append({
-    "codigo": "ENM0116",
-    "nome": "TECNOLOGIA DE FABRICACAO 2",
-    "ementa": "Esta disciplina enfoca aspectos de classificação, segurança, seleção dos processos, especificação de custos e automação aplicados à tecnologias de fabricação comumente encontradas na indústria de transformação: Fundição, Soldagem e Conformação Mecânica.",
-    "conteudo": "",
-})
+
+# * Optativa:
+# x.append({
+#     "codigo": "ENM0116",
+#     "nome": "TECNOLOGIA DE FABRICACAO 2",
+#     "ementa": "Esta disciplina enfoca aspectos de classificação, segurança, seleção dos processos, especificação de custos e automação aplicados à tecnologias de fabricação comumente encontradas na indústria de transformação: Fundição, Soldagem e Conformação Mecânica.",
+#     "conteudo": "",
+# })
+
+## Semestre 7
 x.append({
     "codigo": "CIC0103",
     "nome": "TRANSMISSÃO DE DADOS",
@@ -272,18 +304,23 @@ x.append({
     "ementa": "### A VISÃO INTEGRADA DA AUTOMAÇÃO INDUSTRIAL.### OS DIFERENTES SUB-SISTEMAS DO CIM: GESTÃO HIERARQUIZADA, COMUNICAÇÃO, INTERFASES E SUB-SISTEMA FÍSICO.### O SUB-SISTEMA FÍSICO: CARACTERIZAÇÃO DE COMPONENTES, EQUIPAMENTOS DE TRANSPORTES E MANUSEIO.### O SISTEMA TRANSPORTE COMO ELEMENTOS DE INTEGRAÇÃO.### CÉLULAS E SISTEMAS FLEXÍVEIS DE MANUFATURA: SUA SITUAÇÃO NO CIM, DIFERENTES CONFIGURAÇÕES (lay-out, sist. de transporte, filosofia de operação).### CONTROLE DE FMS's: O NÍVEL DE SUPERVISÃO/MONITORAÇÃO(MÉTO-DOS E FERRAMENTAS).### A AUTOMATIZAÇÃO INTEGRADA DOS SISTEMAS DE MANUFATURA: MÉTO-DOS E FERRAMENTAS.",
     "conteudo": "1.0 - Modelo de Referência para Manufatura Integrada por Computador.2.0 - Definições: Peças, Unidade, FMC/FMS, CAE/CAD, CAM, CAP, CAPP, CAQ, CIM.3.0 - Planejamento de Produto: Projeto e Engenharia, CAE/CAD, Padronização, Soluções de Mercado.4.0 - Planejamento do Processo: CAPP, Tecnologia de Grupo, Integração CAD/GT/CAPP.5.0 - Planejamento e Controle da Produção: Sistemas Pull X Pull, MRP II, OPT, JIT.6.0 - CAM: Fase de Planejamento e Fase de Exercução (Controle).7.0 - CAQ: Garantia da qualidade, CAQ no Contexto do CIM.8.0 - Contexto de Chão de Fábrica: FMc, FMS, Integração, Padronização.9.0 - Base de Dados.10 - Aspectos de Comunicação de Dados e LAN: Protocolo MAP/TOP, Modelo de Referência: OSI.EMENTA/BIBLIOGRAFIA/PROGRAMA ATUALIZADOS EM 26.04.2000",
 })
+# ? Cadeia 5, LABORATÓRIO DE CONTROLE DE SISTEMAS DINÂMICOS (30h) de 90h
 x.append({
     "codigo": "ENE0078",
     "nome": " LABORATÓRIO DE CONTROLE DE SISTEMAS DINÂMICOS",
     "ementa": "	Ferramentas computacionais. Modelagem de sistemas físicos. Análise de resposta no domínio do tempo e no domínio da frequência. Projeto de compensadores.",
     "conteudo": "Ferramentas computacionais:- Simulação de sistemas dinâmicos.Modelagem de sistemas físicos:- Obtenção de equações diferenciais e funções de transferência de partes de sistemas físicos, diagramas de blocos.Análise de resposta no domínio do tempo e no domínio da frequência:- Resposta transitória de sistemas de 1ª e 2ª ordem, identificação de parâmetros, erro estacionário- Verificação do funcionamento de sistemas físicos submetidos a sinais senoidais- Análise de estabilidade. Projeto de compensadores:- Projeto por intermédio da técnica do Lugar das Raízes- Projeto por intermédio da técnica de resposta em frequência- Sintonia de compensadores PID.",
 })
+# ? Cadeia 9, CONTROLE NO ESPAÇO DE ESTADOS (60h) de 60h
 x.append({
     "codigo": "ENE0079",
     "nome": "CONTROLE NO ESPAÇO DE ESTADOS",
     "ementa": "	Revisão de álgebra linear. Descrição matemática de sistemas. Estabilidade. Controlabilidade e observabilidade. Representações no espaço de estados. Realimentação de estados. Observabilidade e injeção da saída. Tópicos de controle avançado.",
     "conteudo": "Revisão de álgebra linear- Espaços vetoriais- Dependência linear, bases e coordenadas- Transformação linear- Representação matricial de transformações lineares- Transformação de similaridade- Sistemas de equações algébricas lineares- Autovalores e autovetores- Diagonalização- Funções de matrizes Descrição matemática de sistemas- Descrição no espaço de estados de sistemas lineares e não lineares, variantes e invariantes no tempo, com uma entrada e uma saída e com múltiplas entradas e múltiplas saídas- Linearização- Solução das equações de estados de sistemas lineares invariantes no tempo- Equações de estados equivalentes Estabilidade- Estabilidade entrada/saída de sistemas- Estabilidade interna de sistemas- Teorema de Lyapunov Controlabilidade e observabilidade- Controlabilidade- Observabilidade- Dualidade- Decomposição canônica Representações no espaço de estados- Realização de funções de transferência- Forma canônica controlável- Forma canônica observável- Decomposição de Kalman- Realizações de ordem mínima- Realização de matrizes de transferência Realimentação de estados- Realimentação de estados de sistemas com uma entrada e uma saída e com múltiplas entradas e múltiplas saídas- Métodos de Ackerman e Bass Gura- Função de transferência a malha fechada- Estabilizabilidade e alocação de polos- Regulação e rastreamento- Rejeição de perturbações com canal integral- Regulador Linear Quadrático Observadores de estado e injeção da saída- Observadores de estado de sistemas com uma entrada e uma saída e com múltiplas entradas e múltiplas saídas- Detectabilidade e alocação de polos- Princípio da separação- Configuração controlador/observador- Regulador Linear Gaussiano- Observador com rejeição de perturbaçãoTópicos de controle avançado- Noções de controle robusto, ótimo, adaptativo ou preditivo",
 })
+
+# Semestre 8
+
 x.append({
     "codigo": "CIC0126",
     "nome": "PROCESSAMENTO EM TEMPO REAL",
@@ -314,6 +351,8 @@ x.append({
     "ementa": "Maturidade e valor em sistemas de produção. Estratégia de produção. Modelos de produção. Gestão da cadeia de suprimento. Custos e formação de preços. Engenharia econômica. Gestão da qualidade. Gestão de projetos. Planejamento e controle da produção.",
     "conteudo": "a. MATURIDADE E VALOR EM SISTEMAS DE PRODUÇÃO: Valorização em sistemas de produção. Posicionamentos tempo-espaço em trajetórias de excelência, em diversos espaços de valorização, sob diferentes perspectivas de tempo .b. ESTRATÉGIA DE PRODUÇÃO: Estratégia corporativa, vantagem competitiva, forças que moldam a competição na indústria, cadeia de valor, implementação da estratégia, balanced scorecard, mapa estratégico, estratégias funcionais, estratégia de produção/operações, sistema americano/sistema japonês, conteúdo e processo da estratégia de produção, fatores competitivos e objetivos de desempenho, dimensões competitivas da produção, trade-offs, decisões na estratégia de produção e alternativas estratégicas: CKD.c. MODELOS DE PRODUÇÃO: Revolução industrial, processo de industrialização no Brasil, política industrial brasileira, setores industriais, indústria de serviços, sistemas de produção, modelos de industrialização e produção, o modelo Toyota, produção enxuta, sincronização enxuta, clusters.d. GESTÃO DA CADEIA DE SUPRIMENTO: Conceitos e tipos de cadeias de suprimentos. Modelos para o gerenciamento da cadeia de suprimentos. Sistemas de informação para gestão da cadeia de suprimentos.e. CUSTOS E FORMAÇÃO DE PREÇOS: Custos na indústria e nos serviços. Despesas operacionais. Ponto de equilíbrio. Custeio baseado em atividades.f. ENGENHARIA ECONÔMICA: Conceitos de Matemática Financeira. Comparação de alternativas de investimento e financiamento de projetos utilizando valor presente líquido, taxa interna de retorno, conceitos de depreciação e substituição de equipamentos.g. GESTÃO DA QUALIDADE: Conceituação de qualidade. Ferramentas de qualidade: histogramas, diagramas de causa e efeito, diagramas de pareto, folhas de verificação, gráficos lineares, diagramas de dispersão e fluxogramas. Avaliação da qualidade por atributos ou por variáveis. Custos da qualidade: prevenção, inspeção, falhas internas e falhas externas. Controle estatístico de processos. Confiabilidade, manutenibilidade e disponibilidade. Famílias ISO de normas de qualidade: ISO 9000, ISO 14000 e ISO 26000. h. GESTÃO DE PROJETOS: Guias de melhores práticas. Redes de projeto. Determinação de caminhos críticos. Custos e otimização em redes de projetos. Cronograma físico-financeiro de projetos.i. PLANEJAMENTO E CONTROLE DA PRODUÇÃO: Planejamento da capacidade. Estoques. Localização das instalações. Projeto do produto e processo. Arranjo físico de instalações. Projeto e medida do trabalho.",
 })
+
+## Semestre 9
 x.append({
     "codigo": "ENE0240",
     "nome": "CONTROLE PARA AUTOMAÇÃO",
@@ -326,13 +365,15 @@ x.append({
     "ementa": "O Projeto Final de Curso, é uma atividade integradora de conhecimentos obrigatória do Curso de Engenharia Mecatrônica que visa propiciar ao aluno a capacidade de investigação e resolução de problemas em engenharia de maneira global e objetiva, o aprimoramento de sua habilidade para elaboração de documentos técnicos e de sua capacidade de expressão oral em público. A carga horária do Projeto Final de Curso será integralizada pelo estudante por meio de dois componentes curriculares do tipo atividade. O Regulamento de Projeto Final do Projeto Pedagógico do Curso de Engenharia Mecatrônica descreve as regras para matrícula, desenvolvimento e avaliação nestes componentes curriculares.",
     "conteudo": "",
 })
-# ! Sem Ementa
-x.append({
-    "codigo": "ENM0119",
-    "nome": "SEGURANCA EM SISTEMAS DE CONTROLE E AUTOMACAO",
-    "ementa": "",
-    "conteudo": "",
-})
+# ! Sem Ementa, desconsiderar já que é optativa
+# x.append({
+#     "codigo": "ENM0119",
+#     "nome": "SEGURANCA EM SISTEMAS DE CONTROLE E AUTOMACAO",
+#     "ementa": "",
+#     "conteudo": "",
+# })
+
+## Semestre 10
 x.append({
     "codigo": "FTD0015",
     "nome": "ESTÁGIO CURRICULAR EM ENGENHARIA MECATRÔNICA",
@@ -345,6 +386,34 @@ x.append({
     "ementa": "O Projeto Final de Curso, é uma atividade integradora de conhecimentos obrigatória do Curso de Engenharia Mecatrônica que visa propiciar ao aluno a capacidade de investigação e resolução de problemas em engenharia de maneira global e objetiva, o aprimoramento de sua habilidade para elaboração de documentos técnicos e de sua capacidade de expressão oral em público. A carga horária do Projeto Final de Curso será integralizada pelo estudante por meio de dois componentes curriculares do tipo atividade. O Regulamento de Projeto Final do Projeto Pedagógico do Curso de Engenharia Mecatrônica descreve as regras para matrícula, desenvolvimento e avaliação nestes componentes curriculares.",
     "conteudo": "",
 })
+
+## Cadeia 1 de Seletivadade, todas as matérias 240h:
+x.append({
+    "codigo": "ADM0023",
+    "nome": "INTRODUÇÃO À ADMINISTRAÇÃO",
+    "ementa": "Conceitos de Administração. As finalidades da Administração. Administração e as organizações. Evolução do pensamento e da Teoria Administrativa. Abordagem crítica do pensamento administrativo. Funções da Administração: planejamento, organização, execução, liderança e controle. Áreas funcionais da Administração. Papéis, competências e atuação profissional em administração. Administração no contexto brasileiro. Administração na sociedade contemporânea. Ética e Diversidade nas organizações.",
+    "conteudo": "1. Definição de administração. O papel dos gerentes.2. Os administradores e o ambiente externo.3. Evolução do pensamento e da Teoria Administrativa4. O planejamento eficaz.5. Compreendendo a função organização.6. Poder e liderança.7. Controle organizacional.8. Enfoque crítico das organizações.9. Processo decisório e resolução de problemas.",
+})
+# * adicionou-se o objetivos nessa ementa tbm
+x.append({
+    "codigo": "ECO0019",
+    "nome": "INTRODUÇÃO À ECONOMIA",
+    "ementa": "Discute-se, em caráter introdutório, questões metodológicas da ciência econômica, abordando, em seguintes temas: noções de microeconomia, estruturas de mercado, a demanda e a oferta; noções de macroeconomia, os agregados macroeconômicos, os modelos macroeconômicos simplificados; noções de economia monetária, as diferentes interpretações da inflação e políticas de estabilização; as relações econômicas internacionais, taxa de câmbio, balanço de pagamento, relações econômicas do Brasil com o resto do mundo e principais problemas atuais.",
+    "conteudo": "No curso, apresentam-se conceitos e instrumentos de análise básicos da Economia, objetivando capacitar o estudante a melhor compreender os fenômenos econômicos da realidade que o cerca. São discutidos tanto aspectos relacionados ao comportamento e interação de agentes econômicos individuais (pessoas, empresas, o governo) - ou seja, à abordagem microeconômica -, quanto elementos de uma análise em perspectiva agregada, envolvendo o sistema econômico como um todo - a abordagem macroeconômica. Sempre que pertinente, destacam-se as características próprias do caso brasileiro, assim como o meio histórico e social em que se insere o pensamento econômico." + '- Unidade I - Introdução. A teoria econômica: objeto. Economia "positiva": a hipótese do comportamento maximizador. Alocação de recursos escassos e eficiência. Custos de Oportunidade. Vantagens comparativas e ganhos com comércio. Economia "normativa" e juízos de valor. Escolha social: decisões de mercado e decisões centralizadas. - Unidade II - Sistema de Preços. Teoria elementar da demanda e oferta de bens e serviços. Comportamento competitivo; o modelo de concorrência perfeita; determinação de preços em concorrência; o conceito de equilíbrio de mercado. Elasticidades. Estruturas de mercado. Falhas de Mercado: a ideia de externalidades, o conceito de bem público e o governo como agente regulador. - Unidade III - Contas Nacionais. A mensuração da atividade econômica. Produto e renda. A despesa global e seus componentes. Comparações internacionais de nível de renda. Comparações no tempo: o problema do deflacionamento. Índices de preços. - Unidade IV - Noções de Economia Monetária. Funções e história da moeda. O sistema bancário e a criação de moeda. Banco Central e controle da oferta monetária. Sistema financeiro no Brasil. Inflação; efeitos; o debate sobre suas causas. - Unidade V - Noções de Macroeconomia. A economia no longo prazo; produto potencial e produto efetivo. Crescimento econômico; poupança, investimento e o papel do sistema financeiro. A economia no curto prazo; flutuações do produto e renda. A visão "clássica" e a keynesiana. Política fiscal: efeitos, instrumentos. Desemprego keynesiano. Outras causas de desemprego. - Unidade VI - Noções de Economia Internacional. Relações econômicas internacionais. O balanço de pagamentos. A taxa de câmbio. Evolução recente do balanço de pagamentos e da política cambial no Brasil. Comércio internacional e vantagens comparativas; livre comércio e protecionismo. O processo de globalização. - Unidade VII - Distribuição de Renda e Tópicos de Economia Brasileira. Distribuição pessoal da renda. Desigualdade distributiva e seus Indicadores. Distribuição de renda no Brasil: evolução, fatores que a influenciam. A experiência inflacionária brasileira e os planos de estabilização. O Plano Real. As perspectivas atuais da economia brasileira. eal. As perspectivas atuais da economia brasileira.',
+})
+x.append({
+    "codigo": "SOL0042",
+    "nome": "INTRODUÇÃO À SOCIOLOGIA",
+    "ementa": "Introduzir a Sociologia tanto como produto dos processos de modernização como produtora de um discurso sobre a modernidade. Apresentar as contribuições centrais dos clássicos para o pensamento sociológico, assim como as suas concepções particulares sobre o capitalismo e os tempos modernos. Discutir os contrastes históricos entre centro e periferia e a tentativa da sociologia latino-americana e brasileira de explicar a particularidade do subdesenvolvimento, do capitalismo dependente e da modernização periférica. Pensar o mundo contemporâneo através do debate sobre Desigualdade e Diferença (Identidade), Redistribuição e Reconhecimento.",
+    "conteudo": "",
+})
+x.append({
+    "codigo": "FDD0155",
+    "nome": "NOÇÕES DE DIREITO",
+    "ementa": "VISAO GERAL DO DIREITO. CONCEITOS BASICOS.",
+    "conteudo": "01. DIREITO. ORIGENS. O DIREITO COMO REGULADOR DA VIDA SOCIAL. NORMAS SOCIAIS. MORAL. EQUIDADE E JUSTICA. 02. DIREITO OBJETIVO. DIREITO SUBJETIVO. RELACAO JURIDICA. SUJEITO DE DIREITO. OBJETO DE DIREITO. 03. DIREITO PUBLICO E PRIVADO. CONCEITO E SUB-DIVISOES. 04. DIREITO CIVIL. CAPACIDADE. PERSONALIDADE. DOS FATOS JURIDICOS. DIREITO DE FAMILIA E SUCESSOES. 05. DIREITO COMERCIAL. COMERCIANTE. ATO DE COMERCIO. SOCIEDADES CO- MERCIANTE. ATO DE COMERCIO. SOCIEDADES COMERCIAIS. TITULOS DE CREDITO. 06. DIREITO CONSTITUCIONAL. ESTADO E SOCIEDADE. METODOLOGIA. O ORDE- NAMENTO JURIDICO COMO SISTEMA. NACIONALIDADE. DIREITOS POLITICOS. DOS DIREITOS E GARANTIAS INDIVIDUAIS. 07. DIREITO PENAL. ANTIJURIDICIDADE. CAUSAS DE JUSTIFICACAO. TIPO CULPABILIDADE. PENA. 08. DIREITO ADMINISTRATIVO. LECITACAO. 09. REGULAMENTACAO DO EXERCICIO DA ENGENHARIA. 10. O DIREITO DE CONSTRUIR.",
+})
+
 
 with open("MechatronicsEngeneeringSubjects.json", "w+", encoding='utf-8') as f:
     json.dump(x, f, indent=4, ensure_ascii=False)
