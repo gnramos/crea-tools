@@ -34,7 +34,18 @@ intervention_dict = {
     "eletromagnetico":"eletromagnetismo",
 }
 
-def preprocess(text):
+def preprocess(text:str):
+    """ Preprocesses a given text and returns a list of processed words.
+
+    This function firstly uses the simple_preprocess function from Gensim and removes predefined strings that are considered noises. After that, the function uses the pipeline from Spacy, which has a tokenizer, tagger and parser. Then, it removes stopwords and all words are lemmatized by Spacy. Finally, some predefined lemmas are changed by a dictionary and the remaining lemmas are returned as a list.
+
+    ### Parameters:
+        text: a string type object containing the text to be processed.
+    
+    ### Returns:
+        A list type object containing all words as lemmas. 
+    """
+
     # * importing stopwords from nltk and spacy pipeline
     global nlp
     global stopWords_list
