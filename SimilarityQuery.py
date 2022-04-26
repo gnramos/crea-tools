@@ -1,18 +1,28 @@
 # Front-End program to do similarity queries
 
-from SimilarityFunction import search_similarity_query
+import SimilarityFunction
+import os
 
-text = input("Type the text that will be used:\n\t")
+while(1):
+    filename = input("Type the name of the file that will provide the subjects (without extension)\n\t")
+    if os.path.isfile(filename + '.json'):
+        SimilarityFunction.readFiles(filename=filename)
+        break
+    else:
+        print('Invalid file, check if the file exists and is typed correctly!\n')
+print()
+
+text = input("Type the text that will be used in the query :\n\t")
 print()
 
 n = int(input("Type how many most similar documents will be shown:\n\t"))
 print()
 
-# TODO: It's probably better to insert the threshold as function parameters separate into 2 function calls: 1 to n-best and other for >= threshold
+# TODO: Maybe it's better to use the threshold in a second function. Therefore, 2 functions will be created: one to n-best and other for >= threshold
 t = float(input("Would you like to set up a minimum value? [0, 1], type -1 for no:\n\t"))
 print()
 
-result = search_similarity_query(text, n)
+result = SimilarityFunction.search_similarity_query(text, n)
 
 if (t != -1):
     result = result[result['Relevancia'] >= t]

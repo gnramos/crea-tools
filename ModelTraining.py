@@ -4,23 +4,39 @@ import pickle
 import gensim
 from gensim import corpora
 
-with open('AuxFiles\\documents_df_pickle.txt', 'rb') as f:
-    documents_df = pickle.load(f)
+id2wordDict = []
+tfidf_model = []
+lsi_model = []
 
-lemmatizedData = documents_df["documento"].tolist()
+def modelTraining(filename):
+    global id2wordDict
+    global tfidf_model
+    global lsi_model
+    
+    try:
+        with open('AuxFiles\\documents_df_pickle-' + filename + '.txt', 'rb') as f:
+                documents_df = pickle.load(f)
+    except FileNotFoundError:
+        import DataPreprocessing
+        DataPreprocessing.dataPreprocessing(filename=filename)
 
-# * gensim dictionary object, which will track each word to its respective id
-id2wordDict = corpora.Dictionary(lemmatizedData)
+        with open('AuxFiles\\documents_df_pickle-' + filename + '.txt', 'rb') as f:
+                documents_df = pickle.load(f)
 
-# * gensim doc2bow method to map each word to a integer id and its respective frequency
-corpus = [id2wordDict.doc2bow(text) for text in lemmatizedData]
+    lemmatizedData = documents_df["documento"].tolist()
 
-# * corpus -> list of list of tuples (id of a word, frequency)
+    # * gensim dictionary object, which will track each word to its respective id
+    id2wordDict = corpora.Dictionary(lemmatizedData)
 
-tfidf_model = gensim.models.TfidfModel(corpus, id2word=id2wordDict)
+    # * gensim doc2bow method to map each word to a integer id and its respective frequency
+    corpus = [id2wordDict.doc2bow(text) for text in lemmatizedData]
 
-lsi_model = gensim.models.LsiModel(tfidf_model[corpus], id2word=id2wordDict, num_topics=100, power_iters=100)
+    # * corpus -> list of list of tuples (id of a word, frequency)
 
-gensim.corpora.MmCorpus.serialize('AuxFiles\\tfidf_model_mm', tfidf_model[corpus])
+    tfidf_model = gensim.models.TfidfModel(corpus, id2word=id2wordDict)
 
-gensim.corpora.MmCorpus.serialize('AuxFiles\\lsi_model_mm', lsi_model[tfidf_model[corpus]])
+    lsi_model = gensim.models.LsiModel(tfidf_model[corpus], id2word=id2wordDict, num_topics=100, power_iters=100)
+
+    gensim.corpora.MmCorpus.serialize('AuxFiles\\tfidf_model-' + filename + '_mm', tfidf_model[corpus])
+
+    gensim.corpora.MmCorpus.serialize('AuxFiles\\lsi_model-' + filename + '_mm', lsi_model[tfidf_model[corpus]])
