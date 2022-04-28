@@ -1,4 +1,4 @@
-from gensim import corpora
+from gensim.corpora import MmCorpus
 from gensim.similarities.docsim import MatrixSimilarity
 from nltk.corpus import stopwords
 import gensim
@@ -50,52 +50,43 @@ def dataPreprocessing(filename:str):
         pickle.dump(documents_df, f)
 
 
-# ModelTraining.py ########################################################
+def model_training(course):
+    '''Trains tf-idf and lsi models with the data for the course.
 
-def modelTraining(filename:str):
-    """ Based on the the given file for the subjects, reads the processed data and trains a tf-idf model and also a lsi-model.
+    Reads the course's JSON file whose subjects become classes for the training
+    the models.
 
-    This function reads the .json file that contains all subjects, which will become the classes for the classification function. Moreover, it will read the saved processed data and train the models. The training consists in, firstly, creating a dictionary that will map all words to an numerical id. Secondly, it will create a bag-of-words corpus that will contain all the words frequency. After that, this values will transformed with the tf-idf model, which will atribute more value to important words that appears less in documents but is very meaningful to its topic. Finally, the values processed by tf-idf will be again transformed using LSI, which performs a SVD (singular value decomposition) and creates a document-to-topic matrix that will saved in a Matrix Market format and be used in the similarity query function. This function also creates a pickle file that will store id2wordDict, tfidf_model, lsi_model objects.
+    Keyword arguments:
+    course -- a string containing the name of course.
+    '''
 
-    ### Parameters:
-        filename: a string type object containing the name of the subjects file (without the extension).
+    file = f'AuxFiles\\documents_df_pickle-{course}.txt'
+    if not os.path.isfile(file):
+        dataPreprocessing(course)
 
-    ### Returns:
-        None
-    """
-
-    try:
-        with open('AuxFiles\\documents_df_pickle-' + filename + '.txt', 'rb') as f:
-             documents_df = pickle.load(f)
-    except FileNotFoundError:
-        dataPreprocessing(filename=filename)
-
-        with open('AuxFiles\\documents_df_pickle-' + filename + '.txt', 'rb') as f:
-            documents_df = pickle.load(f)
+    with open(file, 'rb') as f:
+        documents_df = pickle.load(f)
 
     lemmatizedData = documents_df["documento"].tolist()
-
-    # * gensim dictionary object, which will track each word to its respective id
-    id2wordDict = corpora.Dictionary(lemmatizedData)
-
-    # * gensim doc2bow method to map each word to a integer id and its respective frequency
+    id2wordDict = gensim.corpora.Dictionary(lemmatizedData)
     corpus = [id2wordDict.doc2bow(text) for text in lemmatizedData]
 
-    # * corpus -> list of list of tuples (id of a word, frequency)
-
     tfidf_model = gensim.models.TfidfModel(corpus, id2word=id2wordDict)
+    file = f'AuxFiles\\tfidf_model-{course}_mm'
+    MmCorpus.serialize(file, tfidf_model[corpus])
 
-    # * num_topics = numbers of subjects
-    lsi_model = gensim.models.LsiModel(tfidf_model[corpus], id2word=id2wordDict, num_topics=len(lemmatizedData), power_iters=100)
+    lsi_model = gensim.models.LsiModel(tfidf_model[corpus],
+                                       id2word=id2wordDict,
+                                       num_topics=len(lemmatizedData),
+                                       power_iters=100)
+    file = f'AuxFiles\\lsi_model-{course}_mm'
+    MmCorpus.serialize(file, lsi_model[tfidf_model[corpus]])
 
-    gensim.corpora.MmCorpus.serialize('AuxFiles\\tfidf_model-' + filename + '_mm', tfidf_model[corpus])
+    file = f'AuxFiles\\dict_and_models_pickle-{course}.txt'
+    with open(file, 'wb') as f:
+        pickle.dump([id2wordDict, tfidf_model, lsi_model], f)
 
-    gensim.corpora.MmCorpus.serialize('AuxFiles\\lsi_model-' + filename + '_mm', lsi_model[tfidf_model[corpus]])
 
-    with open('AuxFiles\\dict_and_models_pickle-' + filename + '.txt', 'wb') as f:
-        pickle.dump( [id2wordDict, tfidf_model, lsi_model], f)
-
-# preprocessingFunctionModule.py ##############################################
 nlp = spacy.load('pt_core_news_lg')
 ignore = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi"]
 stop_words = stopwords.words("portuguese")
@@ -103,7 +94,6 @@ stop_words += ['referente', 'seguinte', 'etc', 'ª', 'tal', 'um', 'dois', 'tres'
                'vs', 'aula', 'tal']
 stop_words = gensim.utils.simple_preprocess(" ".join(stop_words), deacc=True,
                                             min_len=1, max_len=40)  # magic numbers?
-
 
 # * manual intervention, changing final lemmas
 intervention_dict = {"campar": "campo",
@@ -156,7 +146,7 @@ def search_similarity_query(course, query, num_best=8):
 
     lsi_corpus_file = f'AuxFiles\\lsi_model-{course}_mm'
     if not os.path.isfile(lsi_corpus_file):
-        modelTraining(course)
+        model_training(course)
     lsi_corpus = gensim.corpora.MmCorpus(lsi_corpus_file)
 
     file = f'AuxFiles\\dict_and_models_pickle-{course}.txt'
