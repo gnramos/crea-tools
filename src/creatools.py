@@ -7,46 +7,29 @@ import pandas as pd
 import pickle
 import spacy
 
-# DataPreprocessing.py ########################################################
 
-def dataPreprocessing(filename:str):
-    """ Reads the given file, processes the texts and saves it as a Dataframe into a pickle file.
+def data_preprocessing(course):
+    '''Dumps the course information into a pickle file..
 
-    This function reads the .json file that contains all subjects and, for each row, concatenates the name, syllabus and content into a single string. This text will then be processed by the preprocess function inserted into a Dataframe. Finally, this Dataframe is saved in a pickle binary text format.
+    Reads the course's JSON file containing all subjects and builds the
+    DataFrame with joined name, syllabus and content.
 
-    ### Parameters:
-        filename: a string type object containing the name of the subjects file (without the extension).
+    Keyword arguments:
+    course -- a string containing the name of course.
+    '''
 
-    ### Returns:
-        None
-    """
-
-    subjects_df = pd.read_json(filename + '.json')
+    subjects_df = pd.read_json(f'{course}.json')
     subjects_df = subjects_df.sort_values(by=["codigo"])
     subjects_df = subjects_df.reset_index(drop=True)
 
-    documents_list = []
-
-    for i, row in subjects_df.iterrows():
-
-        # * reading values of each subject (row)
-        subject_id = row["codigo"]
-        name = row["nome"]
-        syllabus = row["ementa"]
-        content = row["conteudo"]
-
-        # * combining them to create the subject document
-        text = name + ' ' + syllabus + ' ' + content
-
-        # * preprocessing
-        preProcessedText = preprocess(text)
-        documents_list.append(preProcessedText)
-
-    documents_series = pd.Series(documents_list, name="documento")
-
+    # Provavelmente pode ser feito de modo mais eficiente diretamente no subjects_df
+    documents_list = [preprocess(f'{row["nome"]} {row["ementa"]} {row["conteudo"]}')
+                      for i, row in subjects_df.iterrows()]
+    documents_series = pd.Series(documents_list, name='documento')
     documents_df = pd.concat([subjects_df, documents_series], axis=1)
 
-    with open('AuxFiles\\documents_df_pickle-' + filename + '.txt', 'wb') as f:
+    file = f'AuxFiles\\documents_df_pickle-{course}.txt'
+    with open(file, 'wb') as f:
         pickle.dump(documents_df, f)
 
 
@@ -62,7 +45,7 @@ def model_training(course):
 
     file = f'AuxFiles\\documents_df_pickle-{course}.txt'
     if not os.path.isfile(file):
-        dataPreprocessing(course)
+        data_preprocessing(course)
 
     with open(file, 'rb') as f:
         documents_df = pickle.load(f)
@@ -95,7 +78,6 @@ stop_words += ['referente', 'seguinte', 'etc', 'ª', 'tal', 'um', 'dois', 'tres'
 stop_words = gensim.utils.simple_preprocess(" ".join(stop_words), deacc=True,
                                             min_len=1, max_len=40)  # magic numbers?
 
-# * manual intervention, changing final lemmas
 intervention_dict = {"campar": "campo",
                      "seriar": "serie",
                      "eletromagnetico": "eletromagnetismo"}
