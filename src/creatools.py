@@ -97,78 +97,45 @@ def modelTraining(filename:str):
 
 # preprocessingFunctionModule.py ##############################################
 nlp = spacy.load('pt_core_news_lg')
+ignore = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi"]
+stop_words = stopwords.words("portuguese")
+stop_words += ['referente', 'seguinte', 'etc', 'ª', 'tal', 'um', 'dois', 'tres',
+               'vs', 'aula', 'tal']
+stop_words = gensim.utils.simple_preprocess(" ".join(stop_words), deacc=True,
+                                            min_len=1, max_len=40)  # magic numbers?
 
-# * adding custom texts that dont represent real words (noises)
-noises_list = ["i", "ii", "iii", "iv", "v", "vi", "vii", "viii", "ix", "x", "xi"]
-
-stopWords_list = stopwords.words("portuguese")
-
-# * adding custom words to StopWords list
-stopWords_list += [
-    'referente',
-    'seguinte',
-    'etc',
-    'ª',
-    'tal',
-    'um',
-    'dois',
-    'tres',
-    'vs',
-    'aula',
-    'tal',
-]
-
-# * preprocessing stopwords to correct format
-stopWords_list = gensim.utils.simple_preprocess(" ".join(stopWords_list), deacc=True, min_len=1, max_len=40)
 
 # * manual intervention, changing final lemmas
-intervention_dict = {
-    "campar": "campo",
-    "seriar":"serie",
-    "eletromagnetico":"eletromagnetismo",
-}
+intervention_dict = {"campar": "campo",
+                     "seriar": "serie",
+                     "eletromagnetico": "eletromagnetismo"}
 
-def preprocess(text:str):
-    """ Preprocesses a given text and returns a list of processed words.
 
-    This function firstly uses the simple_preprocess function from Gensim and removes predefined strings that are considered noises. After that, the function uses the pipeline from Spacy, which has a tokenizer, tagger and parser. Then, it removes stopwords and all words are lemmatized by Spacy. Finally, some predefined lemmas are changed by a dictionary and the remaining lemmas are returned as a list.
+def preprocess(text):
+    ''' Return a list of processed words from the text.
 
-    ### Parameters:
-        text: a string type object containing the text to be processed.
+    Applies Gensim's simple_preprocess, removes words from the ignore_list,
+    apply Spacy's the pipeline, remove stopwords, lemmatize words, and remove
+    lemmas from the intervention dictionary.
 
-    ### Returns:
-        A list type object containing all words as lemmas.
-    """
+    Keyword arguments:
+    text -- string containing the text to be processed.
 
-    # * importing stopwords from nltk and spacy pipeline
-    global nlp
-    global stopWords_list
-    global noises_list
-    global intervention_dict
+    Returns:
+    A list type object containing all words as lemmas.
+    '''
 
-    # * preprocessing text with gensim.simple_preprocess, eliminating noises: lowercase, tokenized, no symbols, no numbers, no accents marks(normatize)
-    text_list = gensim.utils.simple_preprocess(text, deacc=True, min_len=1, max_len=40)
-
-    # * recombining tokens to a string type object and removing remaining noises
-    text_str = " ".join([word for word in text_list if word not in noises_list])
-
-    # * preprocessing with spacy, retokenizing -> tagging parts of speech (PoS) -> parsing (assigning dependencies between words) -> lemmatizing
+    text_lst = gensim.utils.simple_preprocess(text, deacc=True, min_len=1,
+                                              max_len=40)  # magic numbers?
+    text_str = " ".join([word for word in text_lst if word not in ignore])
     text_doc = nlp(text_str)
+    lemmatized_text = [token.lemma_
+                       for token in text_doc
+                       if token.text not in stop_words]
 
-    # * re-tokenization, removing stopwords and lemmatizing
-    lemmatized_text_list = [token.lemma_ for token in text_doc if token.text not in stopWords_list]
-
-    # * manual intervention conversion of lemmas and removing 1 letter stopwords
-    output = []
-    for token in lemmatized_text_list:
-        if len(token) <= 1:
-            continue
-        if token in intervention_dict:
-            output.append(intervention_dict[token])
-        else:
-            output.append(token)
-
-    return output
+    return [intervention_dict.get(token, token)
+            for token in lemmatized_text
+            if len(token) > 1]
 
 
 def search_similarity_query(course, query, num_best=8):
