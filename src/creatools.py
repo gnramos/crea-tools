@@ -8,6 +8,10 @@ import pickle
 import spacy
 
 
+def _tmp_dir(file):
+    return os.path.join('..', 'tmp', file)
+
+
 def data_preprocessing(course):
     '''Dumps the course information into a pickle file..
 
@@ -28,8 +32,7 @@ def data_preprocessing(course):
     documents_series = pd.Series(documents_list, name='documento')
     documents_df = pd.concat([subjects_df, documents_series], axis=1)
 
-    file = f'AuxFiles\\documents_df_pickle-{course}.txt'
-    with open(file, 'wb') as f:
+    with open(_tmp_dir(f'{course}_documents_df.pkl'), 'wb') as f:
         pickle.dump(documents_df, f)
 
 
@@ -43,7 +46,7 @@ def model_training(course):
     course -- a string containing the name of course.
     '''
 
-    file = f'AuxFiles\\documents_df_pickle-{course}.txt'
+    file = _tmp_dir(f'{course}_documents_df.pkl')
     if not os.path.isfile(file):
         data_preprocessing(course)
 
@@ -55,18 +58,16 @@ def model_training(course):
     corpus = [id2wordDict.doc2bow(text) for text in lemmatizedData]
 
     tfidf_model = gensim.models.TfidfModel(corpus, id2word=id2wordDict)
-    file = f'AuxFiles\\tfidf_model-{course}_mm'
-    MmCorpus.serialize(file, tfidf_model[corpus])
+    MmCorpus.serialize(_tmp_dir(f'{course}_tfidf_mm'), tfidf_model[corpus])
 
     lsi_model = gensim.models.LsiModel(tfidf_model[corpus],
                                        id2word=id2wordDict,
                                        num_topics=len(lemmatizedData),
                                        power_iters=100)
-    file = f'AuxFiles\\lsi_model-{course}_mm'
-    MmCorpus.serialize(file, lsi_model[tfidf_model[corpus]])
+    MmCorpus.serialize(_tmp_dir(f'{course}_lsi_mm'),
+                       lsi_model[tfidf_model[corpus]])
 
-    file = f'AuxFiles\\dict_and_models_pickle-{course}.txt'
-    with open(file, 'wb') as f:
+    with open(_tmp_dir(f'{course}_dict+models.pkl'), 'wb') as f:
         pickle.dump([id2wordDict, tfidf_model, lsi_model], f)
 
 
@@ -126,13 +127,12 @@ def search_similarity_query(course, query, num_best=8):
     subjects_df = subjects_df.sort_values(by=['codigo'])
     subjects_df = subjects_df.reset_index(drop=True)
 
-    lsi_corpus_file = f'AuxFiles\\lsi_model-{course}_mm'
+    lsi_corpus_file = _tmp_dir(f'{course}_lsi_mm')
     if not os.path.isfile(lsi_corpus_file):
         model_training(course)
     lsi_corpus = gensim.corpora.MmCorpus(lsi_corpus_file)
 
-    file = f'AuxFiles\\dict_and_models_pickle-{course}.txt'
-    with open(file, 'rb') as f:
+    with open(_tmp_dir(f'{course}_dict+models.pkl'), 'rb') as f:
         id2wordDict, tfidf_model, lsi_model = pickle.load(f)
 
     cosineSimilarity = MatrixSimilarity(lsi_corpus,
