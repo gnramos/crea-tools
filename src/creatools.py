@@ -119,16 +119,18 @@ def preprocess(text):
             if len(token) > 1]
 
 
-def search_similarity_query(json_file, query, num_best=8):
+def search_similarity_query(json_file, query, num_best=8, threshold=0):
     '''Apply the course model to search for query within subjects.
 
     Keyword arguments:
     json_file -- path the the file with the course data.
     query -- text to be searched for.
     num_best -- the number of similar subjects shown.
+    threshold -- the minimum relevance threshold to consider.
 
     Returns:
-        A DataFrame with the query results.
+        A list of tuples with the resulting disciplines in the format
+        (relevance, code, name).
     '''
 
     subjects_df = pd.read_json(json_file)
@@ -155,12 +157,9 @@ def search_similarity_query(json_file, query, num_best=8):
 
     ranking = sorted(cosineSimilarity[query_lsi],
                      key=lambda unit: unit[1], reverse=True)
-    result = [{'Relevancia': round((subject[1] * 100), 6),
-               'Código da Matéria': subjects_df['codigo'][subject[0]],
-               'Nome da matéria': subjects_df['nome'][subject[0]]}
-              for subject in ranking]
-    return pd.DataFrame(result, columns=['Relevancia', 'Código da Matéria',
-                                         'Nome da matéria'])
+    return [(relevance, subjects_df['codigo'][idx], subjects_df['nome'][idx])
+            for idx, relevance in ranking
+            if relevance >= threshold]
 
 
 def main():
@@ -171,10 +170,9 @@ def main():
     threshold = input('Minimum similarity threshold value: ')
     threshold = float(threshold) if threshold else 0
 
-    result = search_similarity_query(json_file, query, n)
-    result = result[result['Relevancia'] >= threshold]
-
-    print(result)
+    result = search_similarity_query(json_file, query, n, threshold)
+    for relevance, code, name in result:
+        print(f'{int(relevance * 100):3d}% {code} {name}')
 
 
 if __name__ == '__main__':
