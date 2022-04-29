@@ -12,17 +12,23 @@ def _tmp_dir(file):
     return os.path.join('..', 'tmp', file)
 
 
-def data_preprocessing(course):
+def _get_course_from_json(json_file):
+    _, file = os.path.split(json_file)
+    course, _ = os.path.splitext(file)
+    return course
+
+
+def data_preprocessing(json_file):
     '''Dumps the course information into a pickle file..
 
     Reads the course's JSON file containing all subjects and builds the
     DataFrame with joined name, syllabus and content.
 
     Keyword arguments:
-    course -- a string containing the name of course.
+    json_file -- path the the file with the course data.
     '''
 
-    subjects_df = pd.read_json(f'{course}.json')
+    subjects_df = pd.read_json(json_file)
     subjects_df = subjects_df.sort_values(by=["codigo"])
     subjects_df = subjects_df.reset_index(drop=True)
 
@@ -32,23 +38,25 @@ def data_preprocessing(course):
     documents_series = pd.Series(documents_list, name='documento')
     documents_df = pd.concat([subjects_df, documents_series], axis=1)
 
+    course = _get_course_from_json(json_file)
     with open(_tmp_dir(f'{course}_documents_df.pkl'), 'wb') as f:
         pickle.dump(documents_df, f)
 
 
-def model_training(course):
+def model_training(json_file):
     '''Trains tf-idf and lsi models with the data for the course.
 
     Reads the course's JSON file whose subjects become classes for the training
     the models.
 
     Keyword arguments:
-    course -- a string containing the name of course.
+    json_file -- path the the file with the course data.
     '''
 
+    course = _get_course_from_json(json_file)
     file = _tmp_dir(f'{course}_documents_df.pkl')
     if not os.path.isfile(file):
-        data_preprocessing(course)
+        data_preprocessing(json_file)
 
     with open(file, 'rb') as f:
         documents_df = pickle.load(f)
@@ -111,25 +119,26 @@ def preprocess(text):
             if len(token) > 1]
 
 
-def search_similarity_query(course, query, num_best=8):
+def search_similarity_query(json_file, query, num_best=8):
     '''Apply the course model to search for query within subjects.
 
     Keyword arguments:
-    course -- a string containing the name of course.
-    query -- a string containing the text to be searched for.
+    json_file -- path the the file with the course data.
+    query -- text to be searched for.
     num_best -- the number of similar subjects shown.
 
     Returns:
         A DataFrame with the query results.
     '''
 
-    subjects_df = pd.read_json(f'{course}.json')
+    subjects_df = pd.read_json(json_file)
     subjects_df = subjects_df.sort_values(by=['codigo'])
     subjects_df = subjects_df.reset_index(drop=True)
 
+    course = _get_course_from_json(json_file)
     lsi_corpus_file = _tmp_dir(f'{course}_lsi_mm')
     if not os.path.isfile(lsi_corpus_file):
-        model_training(course)
+        model_training(json_file)
     lsi_corpus = gensim.corpora.MmCorpus(lsi_corpus_file)
 
     with open(_tmp_dir(f'{course}_dict+models.pkl'), 'rb') as f:
@@ -155,14 +164,14 @@ def search_similarity_query(course, query, num_best=8):
 
 
 def main():
-    course = input('Course name: ')
+    json_file = input('Course JSON file: ')
     query = input('Query text: ')
     n = input('Number of similar documents to show (default is 8): ')
     n = int(n) if n else 8
     threshold = input('Minimum similarity threshold value: ')
     threshold = float(threshold) if threshold else 0
 
-    result = search_similarity_query(course, query, n)
+    result = search_similarity_query(json_file, query, n)
     result = result[result['Relevancia'] >= threshold]
 
     print(result)
