@@ -6,7 +6,7 @@ import os
 import pandas as pd
 import pickle
 import spacy
-
+import argparse
 
 def _tmp_dir(file):
     return os.path.join('..', 'tmp', file)
@@ -98,8 +98,8 @@ def preprocess(text):
     '''
 
     def lemmatized_text():
-        text_lst = gensim.utils.simple_preprocess(text, deacc=True, min_len=1,
-                                                  max_len=40)  # magic numbers?
+        text_lst = gensim.utils.simple_preprocess(text, deacc=True, min_len=2,
+                                                  max_len=46)  # magic numbers?
         text_str = ' '.join([word for word in text_lst if word not in ignore])
         text_doc = nlp(text_str)
         return [token.lemma_
@@ -153,17 +153,32 @@ def search_similarity_query(json_file, query, num_best=8, threshold=0):
 
 
 def main():
-    json_file = input('Course JSON file: ')
-    query = input('Query text: ')
-    n = input('Number of similar documents to show (default is 8): ')
+    parser = argparse.ArgumentParser(description='Search similarity between documents')
+    parser.add_argument('-f', '--filename', type=str, metavar='',
+                        help="Course JSON file, note: the accepted format is the relative directory and extension. e.g. ../data/mecatronica.json)")
+    parser.add_argument('-t', '--text', type=str, metavar='',
+                        help="Query text, the text that will be used for searching similar subjects")
+    parser.add_argument('-n', '--number', type=int, metavar='',
+                        help="Number of similar documents to be shown (default is 8)")
+    parser.add_argument('-T', '--threshold', type=float, metavar='',
+                        help="Minimum similarity threshold value, an argument to set up a minimum accepted value (default is 0 and has priority over 'number' argument), note: must be a float bewteen 0 and 1 (inclusive)")
+
+    args = parser.parse_args()
+    json_file = args.filename
+    query = args.text
+    n = args.number
     n = int(n) if n else 8
-    threshold = input('Minimum similarity threshold value: ')
+    threshold = args.threshold
     threshold = float(threshold) if threshold else 0
 
-    result = search_similarity_query(json_file, query, n, threshold)
-    for relevance, code, name in result:
-        print(f'{int(relevance * 100):3d}% {code} {name}')
+    if not os.path.isfile(args.filename):
+        raise argparse.ArgumentTypeError('Invalid file, please check if the file exists ans it is inserted correctly')
 
+    result = search_similarity_query(json_file, query, n, threshold)
+    idx = 1
+    for relevance, code, name in result:
+        print(f'{idx:02d} {int(relevance * 100):02d}% {code} {name}')
+        idx += 1
 
 if __name__ == '__main__':
     main()
