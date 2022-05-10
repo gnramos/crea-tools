@@ -172,7 +172,7 @@ def main():
     threshold = float(threshold) if threshold else 0
 
     if not os.path.isfile(args.filename):
-        raise argparse.ArgumentTypeError('Invalid file, please check if the file exists ans it is inserted correctly')
+        raise argparse.ArgumentTypeError('Invalid file, please check if the file exists and it is inserted correctly')
 
     result = search_similarity_query(json_file, query, n, threshold)
     idx = 1
