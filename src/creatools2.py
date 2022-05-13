@@ -3,7 +3,6 @@ from gensim import similarities
 from gensim.utils import simple_preprocess
 import gensim
 import nltk
-import os
 import pandas as pd
 
 stopwords = None
@@ -18,39 +17,13 @@ def _preprocess(text, deacc=True, min_len=2, max_len=40):
 
 
 def _get_df_id2word(course, json_file):
-    file = os.path.join('..', 'tmp', f'{course}.corpus')
-    update_files = not os.path.isfile(file)
-    if update_files:
-        df = pd.read_json(json_file)
-        df['text'] = df[['nome', 'ementa', 'conteudo']].apply(lambda x: _preprocess('. '.join(x)), axis=1)
-        id2word = gensim.corpora.Dictionary(df['text'])
-        df['corpus'] = df['text'].apply(id2word.doc2bow)
-        df[['corpus', 'text', 'nome']].to_pickle(file)
-    else:
-        df = pd.read_pickle(file)
-        id2word = gensim.corpora.Dictionary(df['text'])
+    df = pd.read_json(json_file)
+    df['text'] = df[['nome', 'ementa', 'conteudo']].apply(
+        lambda x: _preprocess('. '.join(x)), axis=1)
+    id2word = gensim.corpora.Dictionary(df['text'])
+    df['corpus'] = df['text'].apply(id2word.doc2bow)
 
     return df, id2word
-
-
-def _get_index(course, corpus, lsi):
-    file = os.path.join('..', 'tmp', f'{course}.index')
-    if os.path.isfile(file):
-        index = similarities.MatrixSimilarity.load(file)
-    else:
-        index = similarities.MatrixSimilarity(lsi[corpus])
-        index.save(file)
-    return index
-
-
-def _get_lsi(course, corpus, id2word):
-    file = os.path.join('..', 'tmp', f'{course}.lsi')
-    if os.path.isfile(file):
-        lsi = gensim.models.LsiModel.load(file)
-    else:
-        lsi = gensim.models.LsiModel(corpus, id2word=id2word)  #, num_topics=2)
-        lsi.save(file)
-    return lsi
 
 
 def _get_similar(query, id2word, lsi, index):
@@ -74,8 +47,8 @@ def main():
     args = _parse_args()
     json_file = f'../data/{args.course}.json'
     df, id2word = _get_df_id2word(args.course, json_file)
-    lsi = _get_lsi(args.course, df['corpus'], id2word)
-    index = _get_index(args.course, df['corpus'], lsi)
+    lsi = gensim.models.LsiModel(df['corpus'], id2word=id2word)
+    index = similarities.MatrixSimilarity(lsi[df['corpus']])
     similar = _get_similar(' '.join(args.query), id2word, lsi, index)
     for i, score in similar[:args.num_best]:
         print(f'{score:.2f}', df.iloc[i]['nome'])
