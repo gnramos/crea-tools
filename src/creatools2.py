@@ -1,5 +1,4 @@
 import argparse
-from gensim import similarities
 from gensim.utils import simple_preprocess
 import gensim
 import nltk
@@ -48,9 +47,9 @@ def main():
     json_file = f'../data/{args.course}.json'
     df, id2word = _get_df_id2word(args.course, json_file)
     lsi = gensim.models.LsiModel(df['corpus'], id2word=id2word)
-    index = similarities.MatrixSimilarity(lsi[df['corpus']])
+    index = gensim.similarities.MatrixSimilarity(lsi[df['corpus']])
     similar = _get_similar(' '.join(args.query), id2word, lsi, index)
-    for i, score in similar[:args.num_best]:
+    for i, score in similar[:args.numsimilarities_best]:
         print(f'{score:.2f}', df.iloc[i]['nome'])
 
 
