@@ -24,58 +24,19 @@ def _preprocess(text, deacc=True, min_len=2, max_len=46):
     output = [token.lemma_ for token in doc if token.text not in stopwords]
     return [lemma_intervention[lemma] if lemma in lemma_intervention else lemma for lemma in output]
 
-
-def _get_df_id2word(course, json_file):
-    file = os.path.join('..', 'tmp', f'{course}.corpus')
-    update_files = not os.path.isfile(file)
-    if update_files:
-        df = pd.read_json(json_file)
-        df['text'] = df[['nome', 'ementa', 'conteudo']].apply(lambda x: _preprocess('. '.join(x)), axis=1)
-        id2word = gensim.corpora.Dictionary(df['text'])
-        df['corpus'] = df['text'].apply(id2word.doc2bow)
-        df[['corpus', 'text', 'nome']].to_pickle(file)
-    else:
-        df = pd.read_pickle(file)
-        id2word = gensim.corpora.Dictionary(df['text'])
+def _get_df_id2word(json_file):
+    df = pd.read_json(json_file)
+    df['text'] = df[['nome', 'ementa', 'conteudo']].apply(
+        lambda x: _preprocess('. '.join(x)), axis=1)
+    id2word = gensim.corpora.Dictionary(df['text'])
+    df['corpus'] = df['text'].apply(id2word.doc2bow)
 
     return df, id2word
-
-
-def _get_tfidf(course, corpus, id2word):
-    file = os.path.join('..', 'tmp', f'{course}.tfidf')
-    if os.path.isfile(file):
-        tfidf = gensim.models.TfidfModel.load(file)
-    else:
-        tfidf = gensim.models.TfidfModel(corpus=corpus, id2word=id2word)  #, num_topics=2)
-        tfidf.save(file)
-    return tfidf
-
-
-def _get_lsi(course, corpus, id2word, tfidf):
-    file = os.path.join('..', 'tmp', f'{course}.lsi')
-    if os.path.isfile(file):
-        lsi = gensim.models.LsiModel.load(file)
-    else:
-        lsi = gensim.models.LsiModel(corpus=tfidf[corpus], id2word=id2word)  #, num_topics=2)
-        lsi.save(file)
-    return lsi
-
-
-def _get_index(course, corpus, tfidf, lsi):
-    file = os.path.join('..', 'tmp', f'{course}.index')
-    if os.path.isfile(file):
-        index = gensim.similarities.MatrixSimilarity.load(file)
-    else:
-        index = gensim.similarities.MatrixSimilarity(lsi[tfidf[corpus]])
-        index.save(file)
-    return index
-
 
 def _get_similar(query, id2word, lsi, index):
     vec_bow = id2word.doc2bow(_preprocess(query))
     vec_lsi = lsi[vec_bow]
     return sorted(enumerate(index[vec_lsi]), key=lambda x: x[1], reverse=True)
-
 
 def _parse_args():
     parser = argparse.ArgumentParser(description='similarity query')
@@ -86,28 +47,20 @@ def _parse_args():
                         help='número máximo de tópicos a retornar')
     parser.add_argument('-t', '--threshold', type=float, default=0.0,
                         help='número mínimo de similaridade aceito')
-    parser.add_argument('-r', '--reset', action='store_true',
-                        help='recria todos os documentos auxiliares')
     return parser.parse_args()
-
 
 def main():
     args = _parse_args()
-    if args.reset:
-        for file in os.listdir('../tmp'):
-            if not file.endswith(".gitignore"):
-                os.remove(os.path.join('..', 'tmp', file))
     json_file = f'../data/{args.course}.json'
-    df, id2word = _get_df_id2word(args.course, json_file)
+    df, id2word = _get_df_id2word(json_file)
     corpus = df['corpus'].to_list()
-    tfidf = _get_tfidf(args.course, corpus, id2word)
-    lsi = _get_lsi(args.course, corpus, id2word, tfidf)
-    index = _get_index(args.course, corpus, tfidf, lsi)
+    tfidf = gensim.models.TfidfModel(corpus=corpus, id2word=id2word)
+    lsi = gensim.models.LsiModel(corpus=tfidf[corpus], id2word=id2word)
+    index = gensim.similarities.MatrixSimilarity(lsi[tfidf[corpus]])
     similar = _get_similar(' '.join(args.query), id2word, lsi, index)
     for i, score in similar[:args.num_best]:
         if score >= args.threshold:
             print(f'{score:.2f}', df.iloc[i]['nome'])
-
 
 if __name__ == '__main__':
     main()
