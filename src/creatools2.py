@@ -71,9 +71,10 @@ def _get_index(course, corpus, tfidf, lsi):
     return index
 
 
-def _get_similar(query, id2word, lsi, index):
+def _get_similar(query, id2word, tfidf, lsi, index):
     vec_bow = id2word.doc2bow(_preprocess(query))
-    vec_lsi = lsi[vec_bow]
+    vec_tfidf = tfidf[vec_bow]
+    vec_lsi = lsi[vec_tfidf]
     return sorted(enumerate(index[vec_lsi]), key=lambda x: x[1], reverse=True)
 
 
@@ -103,7 +104,7 @@ def main():
     tfidf = _get_tfidf(args.course, corpus, id2word)
     lsi = _get_lsi(args.course, corpus, id2word, tfidf)
     index = _get_index(args.course, corpus, tfidf, lsi)
-    similar = _get_similar(' '.join(args.query), id2word, lsi, index)
+    similar = _get_similar(' '.join(args.query), id2word, tfidf, lsi, index)
     for i, score in similar[:args.num_best]:
         if score >= args.threshold:
             print(f'{score:.2f}', df.iloc[i]['nome'])

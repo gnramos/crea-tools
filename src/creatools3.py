@@ -33,9 +33,10 @@ def _get_df_id2word(json_file):
 
     return df, id2word
 
-def _get_similar(query, id2word, lsi, index):
+def _get_similar(query, id2word, tfidf, lsi, index):
     vec_bow = id2word.doc2bow(_preprocess(query))
-    vec_lsi = lsi[vec_bow]
+    vec_tfidf = tfidf[vec_bow]
+    vec_lsi = lsi[vec_tfidf]
     return sorted(enumerate(index[vec_lsi]), key=lambda x: x[1], reverse=True)
 
 def _parse_args():
@@ -57,7 +58,7 @@ def main():
     tfidf = gensim.models.TfidfModel(corpus=corpus, id2word=id2word)
     lsi = gensim.models.LsiModel(corpus=tfidf[corpus], id2word=id2word)
     index = gensim.similarities.MatrixSimilarity(lsi[tfidf[corpus]])
-    similar = _get_similar(' '.join(args.query), id2word, lsi, index)
+    similar = _get_similar(' '.join(args.query), id2word, tfidf, lsi, index)
     for i, score in similar[:args.num_best]:
         if score >= args.threshold:
             print(f'{score:.2f}', df.iloc[i]['nome'])
