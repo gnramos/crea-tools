@@ -12,10 +12,10 @@ stopwords = noises = lemma_intervention = nlp = None
 def _init_global():
     global stopwords, noises, lemma_intervention, nlp
     stopwords = nltk.corpus.stopwords.words('portuguese')
-    stopwords += ['referente', 'seguinte', 'etc', 'ª', 'tal', 'um', 'dois', 'tres',
-                  'vs', 'aula', 'tal']
-    stopwords = set(simple_preprocess(' '.join(stopwords), deacc=True, min_len=1,
-                                      max_len=46))
+    stopwords += ['referente', 'seguinte', 'etc', 'ª', 'tal', 'um', 'dois',
+                  'tres', 'vs', 'aula', 'tal']
+    stopwords = set(simple_preprocess(' '.join(stopwords), deacc=True,
+                                      min_len=1, max_len=46))
     noises = {'i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'xi'}
     lemma_intervention = {'campar': 'campo',
                           'seriar': 'serie',

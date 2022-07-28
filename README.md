@@ -2,7 +2,7 @@
 
 Projeto para aplicação de processamento de linguagem natural sobre a documentação de cursos de engenharia.
 
-## Setup
+## Preparo
 
 Para utilizar o código, é preciso de algumas ferramentas.
 
@@ -16,18 +16,18 @@ pip3 install spacy
 python3 -m spacy download pt_core_news_lg
 ```
 
-## Usage
+## Uso
 
-O programa pode ser executado diretamente pela linha de comando, basta utilizar o seguinte comando:
+O programa deve ser executado diretamente pela linha de comando, basta utilizar o seguinte comando:
 
 ```bash
-py creatools.py {curso} {texto a ser buscado} {Flag Opcionais}
+python3 creatools.py {curso} {query}
 ```
 
 Para mais detalhes, pode-se utilizar o comando:
 
 ```bash
-py creatools.py --help
+python3 creatools.py -h
 ```
 ## Disclaimer:
 
