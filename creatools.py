@@ -50,11 +50,13 @@ def _parse_args():
                         help='número máximo de tópicos a retornar')
     parser.add_argument('-t', '--threshold', type=float, default=0.0,
                         help='número mínimo de similaridade aceito')
+    parser.add_argument('-m', '--multi_query', action='store_true',
+                        help='ativar o laço de repetição')
     return parser.parse_args()
 
 def main():
     args = _parse_args()
-    json_file = f'../data/{args.course}.json'
+    json_file = f'cursos/{args.course}.json'
     df, id2word = _get_df_id2word(json_file)
     corpus = df['corpus'].to_list()
     tfidf = gensim.models.TfidfModel(corpus=corpus, id2word=id2word)
@@ -64,6 +66,13 @@ def main():
     for i, score in similar[:args.num_best]:
         if score >= args.threshold:
             print(f'{score:.2f}', df.iloc[i]['nome'])
+
+    while(args.multi_query):
+        text = input("\ntype new query:\t")
+        similar = _get_similar(text, id2word, tfidf, lsi, index)
+        for i, score in similar[:args.num_best]:
+            if score >= args.threshold:
+                print(f'{score:.2f}', df.iloc[i]['nome'])
 
 if __name__ == '__main__':
     main()
