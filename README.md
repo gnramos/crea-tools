@@ -15,3 +15,21 @@ pip3 install click --upgrade
 pip3 install spacy
 python3 -m spacy download pt_core_news_lg
 ```
+
+## Usage
+
+O programa pode ser executado diretamente pela linha de comando, basta utilizar o seguinte comando:
+
+```bash
+py creatools.py {curso} {texto a ser buscado} {Flag Opcionais}
+```
+
+Para mais detalhes, pode-se utilizar o comando:
+
+```bash
+py creatools.py --help
+```
+## Disclaimer:
+
+Para saber quais os conteúdos exigidos para cada competência e quais as atribuições de cada curso, utilizou-se como referencial uma planilha obtida a partir de um ex-conselheiro do CREA. Essa planilha não é oficial, mas estava sendo discutido pelo CREA a validade desse documento.
+

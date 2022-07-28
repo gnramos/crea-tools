@@ -14,6 +14,8 @@ lemma_intervention = {
     "campar": "campo",
     "seriar":"serie",
     "eletromagnetico":"eletromagnetismo",
+    "Quimica": "quimico",
+    "Matematica": "matematico",
 }
 nlp = spacy.load('pt_core_news_lg')
 
