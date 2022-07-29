@@ -62,20 +62,32 @@ def _parse_args():
             raise argparse.ArgumentTypeError(f't={t} ∉ [-1.0, 1.0]')
         return t
 
-    parser = argparse.ArgumentParser(description='similarity query')
+    parser = argparse.ArgumentParser(description='Busca por similaridade')
     parser.add_argument('course', help='nome do curso com as informações')
-    parser.add_argument('query', nargs='+',
-                        help='palavras a buscar nas informações do curso')
     parser.add_argument('-n', '--num_best', type=check_positive, default=5,
                         help='número máximo de tópicos a retornar')
     parser.add_argument('-t', '--threshold', type=check_threshold, default=0.0,
                         help='valor mínimo de similaridade aceito [-1, 1]')
-    parser.add_argument('-m', '--multi_query', action='store_true',
-                        help='ativar o laço de repetição')
+
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument('-q', '--query', nargs='+',
+                       help='query única')
+    group.add_argument('-m', '--multi_query', action='store_true',
+                       help='múltiplas queries')
+
     return parser.parse_args()
 
 
 def main():
+    def _show(query):
+        j, similar = 0, _get_similar(query, id2word, tfidf, lsi, index)
+        for i, score in similar:
+            if score >= args.threshold:
+                print(f'{score:.2f}', df.iloc[i]['nome'])
+                j += 1
+            if j >= args.num_best:
+                break
+
     args = _parse_args()
 
     _init_global()
@@ -85,17 +97,20 @@ def main():
     tfidf = gensim.models.TfidfModel(corpus=corpus, id2word=id2word)
     lsi = gensim.models.LsiModel(corpus=tfidf[corpus], id2word=id2word)
     index = gensim.similarities.MatrixSimilarity(lsi[tfidf[corpus]])
-    similar = _get_similar(' '.join(args.query), id2word, tfidf, lsi, index)
-    for i, score in similar[:args.num_best]:
-        if score >= args.threshold:
-            print(f'{score:.2f}', df.iloc[i]['nome'])
 
-    while(args.multi_query):
-        text = input("\ntype new query:\t")
-        similar = _get_similar(text, id2word, tfidf, lsi, index)
-        for i, score in similar[:args.num_best]:
-            if score >= args.threshold:
-                print(f'{score:.2f}', df.iloc[i]['nome'])
+    if args.multi_query:
+        while query := input('Type new query (empty to stop): '):
+            _show(query)
+        #     similar = _get_similar(' '.join(query), id2word, tfidf, lsi, index)
+        #     for i, score in similar[:args.num_best]:
+        #         if score >= args.threshold:
+        #             print(f'{score:.2f}', df.iloc[i]['nome'])
+    else:
+        _show(' '.join(args.query))
+        # similar = _get_similar(' '.join(args.query), id2word, tfidf, lsi, index)
+        # for i, score in similar[:args.num_best]:
+        #     if score >= args.threshold:
+        #         print(f'{score:.2f}', df.iloc[i]['nome'])
 
 
 if __name__ == '__main__':
