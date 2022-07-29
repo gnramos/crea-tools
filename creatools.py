@@ -71,18 +71,19 @@ def _parse_args():
 
     parser = ArgumentParser(description='Busca de termos em ementas',
                             add_help=False)
-    parser.add_argument('-h', '--help', action='help', #default=argparse.SUPPRESS,
-                        help='mostra a mensagem de ajuda e termina o programa.')
+    parser.add_argument('-h', '--help', action='help',
+                        help='mostra esta mensagem de ajuda e termina o programa.')
     parser.add_argument('course', type=check_course,
                         help='nome do curso com as ementas')
 
     group = parser.add_mutually_exclusive_group()
-    group.add_argument('-q', '--query', nargs='+', help='query única')
+    group.add_argument('-q', '--query', nargs='+',
+                       help='query única (fornecida como argumento)')
     group.add_argument('-m', '--multi_query', action='store_true',
-                       help='múltiplas queries')
+                       help='múltiplas queries (recebidas iterativamente)')
 
     parser.add_argument('-n', '--num_best', type=check_positive, default=5,
-                        help='número máximo de tópicos a retornar')
+                        help='número máximo de tópicos a apresentar')
     parser.add_argument('-t', '--threshold', type=check_threshold, default=0.0,
                         help='valor mínimo de similaridade aceito [-1, 1]')
 
@@ -97,21 +98,20 @@ def main():
                 print(f'{score:.2f}', df.iloc[i]['nome'])
                 if (j := j + 1) >= args.num_best:
                     break
+        print()
 
     args = _parse_args()
 
     _init_global()
-    json_file = f'cursos/{args.course}.json'
-    df, id2word = _get_df_id2word(json_file)
+    df, id2word = _get_df_id2word(args.course)
     corpus = df['corpus'].to_list()
     tfidf = gensim.models.TfidfModel(corpus=corpus, id2word=id2word)
     lsi = gensim.models.LsiModel(corpus=tfidf[corpus], id2word=id2word)
     index = gensim.similarities.MatrixSimilarity(lsi[tfidf[corpus]])
 
     if args.multi_query:
-        while query := input('Digite query ([Enter] para terminar): '):
+        while query := input('Digite os termos   ([Enter] para terminar): '):
             _show(query)
-            print()
     else:
         _show(' '.join(args.query))
 
