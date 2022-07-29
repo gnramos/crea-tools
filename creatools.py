@@ -91,7 +91,7 @@ def _parse_args():
 
 
 def main():
-    def _show(query):
+    def run(query):
         j, similar = 0, _get_similar(query, id2word, tfidf, lsi, index)
         for i, score in similar:
             if score >= args.threshold:
@@ -111,9 +111,9 @@ def main():
 
     if args.multi_query:
         while query := input('Digite os termos   ([Enter] para terminar): '):
-            _show(query)
+            run(query)
     else:
-        _show(' '.join(args.query))
+        run(' '.join(args.query))
 
 
 if __name__ == '__main__':
