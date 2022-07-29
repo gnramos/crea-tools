@@ -101,16 +101,8 @@ def main():
     if args.multi_query:
         while query := input('Type new query (empty to stop): '):
             _show(query)
-        #     similar = _get_similar(' '.join(query), id2word, tfidf, lsi, index)
-        #     for i, score in similar[:args.num_best]:
-        #         if score >= args.threshold:
-        #             print(f'{score:.2f}', df.iloc[i]['nome'])
     else:
         _show(' '.join(args.query))
-        # similar = _get_similar(' '.join(args.query), id2word, tfidf, lsi, index)
-        # for i, score in similar[:args.num_best]:
-        #     if score >= args.threshold:
-        #         print(f'{score:.2f}', df.iloc[i]['nome'])
 
 
 if __name__ == '__main__':
