@@ -21,7 +21,11 @@ def _init_global():
                           'seriar': 'serie',
                           'eletromagnetico': 'eletromagnetismo',
                           'Quimica': 'quimico',
-                          'Matematica': 'matematico'}
+                          'Matemática': 'matematico',
+                          'matematica': 'matematico',
+                          'Matematica': 'matematico',
+    }
+                          
     nlp = spacy.load('pt_core_news_lg')
 
 
