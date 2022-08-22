@@ -3,6 +3,7 @@ from argparse import ArgumentParser, ArgumentTypeError
 import gensim
 import nltk
 import pandas as pd
+import numpy as np
 import spacy
 
 # Variáveis globais
@@ -36,13 +37,26 @@ def _preprocess(text, deacc=True, min_len=2, max_len=46):
     return [lemma_intervention.get(lemma, lemma) for lemma in output]
 
 
-def _get_df_id2word(json_file):
-    df = pd.read_json(json_file)
-    df['text'] = df[['nome', 'ementa', 'conteudo']].apply(
-        lambda x: _preprocess('. '.join(x)), axis=1)
-    id2word = gensim.corpora.Dictionary(df['text'])
-    df['corpus'] = df['text'].apply(id2word.doc2bow)
-    return df, id2word
+def _get_df_id2word(xls_file, course, topics_size):
+    crea_df = pd.read_excel(xls_file, skiprows=4).iloc[:, :9].fillna(method="ffill")
+    crea_df = crea_df.replace({"TÓPICOS": np.NaN, "Nº DE ORDEM DOS TÓPICOS": np.NaN})
+    course_df = crea_df[ crea_df['SETOR'] == course]
+
+    topics_dict = {}
+    for i in range(topics_size):
+        text = course_df.iloc[i, 7] + ' ' + course_df.iloc[i, 8]
+        topics_dict[text] = (course_df.iloc[i, 7], course_df.iloc[i, 8])
+
+    topics_df = pd.DataFrame.from_dict({"text": list(topics_dict),
+        "section": [item[0] for item in topics_dict.values()],
+        "topic": [item[1] for item in topics_dict.values()]
+        })
+
+    topics_df["preprocessed"] = topics_df["text"].apply(_preprocess)
+    id2word = gensim.corpora.Dictionary(topics_df["preprocessed"])
+    topics_df['corpus'] = topics_df['preprocessed'].apply(id2word.doc2bow)
+
+    return topics_df, id2word
 
 
 def _get_similar(query, id2word, tfidf, lsi, index):
@@ -53,13 +67,6 @@ def _get_similar(query, id2word, tfidf, lsi, index):
 
 
 def _parse_args():
-    def check_course(course):
-        from os.path import isfile
-        path = f'cursos/{course}.json'
-        if not isfile(path):
-            raise ArgumentTypeError(f'"{path}" não é um arquivo com as ementas.')
-        return path
-
     def check_positive(n):
         n = int(n)
         if n <= 0:
@@ -76,8 +83,6 @@ def _parse_args():
                             add_help=False)
     parser.add_argument('-h', '--help', action='help',
                         help='mostra esta mensagem de ajuda e termina o programa.')
-    parser.add_argument('course', type=check_course,
-                        help='nome do curso com as ementas')
 
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-q', '--query', nargs='+',
@@ -98,7 +103,7 @@ def main():
         j, similar = 0, _get_similar(query, id2word, tfidf, lsi, index)
         for i, score in similar:
             if score >= args.threshold:
-                print(f'{score:.2f}', df.iloc[i]['nome'])
+                print(f"{score:.2f} {df.iloc[i]['section']:50} | {df.iloc[i]['topic']} ")
                 if (j := j + 1) >= args.num_best:
                     break
         print()
@@ -106,7 +111,8 @@ def main():
     args = _parse_args()
 
     _init_global()
-    df, id2word = _get_df_id2word(args.course)
+    df, id2word = _get_df_id2word("Matriz_do_Conhecimento.xls", "Controle e Automação", 2211)
+
     corpus = df['corpus'].to_list()
     tfidf = gensim.models.TfidfModel(corpus=corpus, id2word=id2word)
     lsi = gensim.models.LsiModel(corpus=tfidf[corpus], id2word=id2word)
