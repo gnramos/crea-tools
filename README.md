@@ -21,13 +21,13 @@ python3 -m spacy download pt_core_news_lg
 O programa deve ser executado diretamente pela linha de comando, basta utilizar o seguinte comando:
 
 ```bash
-python3 creatools.py {curso} -q {query}
+python3 process.py {curso} -q {query}
 ```
 
 Para mais detalhes, pode-se utilizar o comando:
 
 ```bash
-python3 creatools.py -h
+python3 process.py -h
 ```
 ## Disclaimer:
 
