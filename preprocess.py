@@ -10,7 +10,7 @@ class Course:  # namespace
         """Extrai o programa da página HTML da disciplina.
 
         Assume que existe um arquivo HTML com o conteúdo da página no diretório
-        "programas". O nome dever estar no formado COD.html, onde COD é o
+        "data/courses". O nome dever estar no formado COD.html, onde COD é o
         código da disciplina (ex: CIC0004).
 
         O arquivo pode se obtido online (após autenticação no SIGAA):
@@ -21,7 +21,7 @@ class Course:  # namespace
                              r'Objetivos:</th>[.\s\S]*?itemPrograma">\W*(.*?)\W*</td>[.\s\S]*?'
                              r'Conteúdo:</th>[.\s\S]*?itemPrograma">\W*(.*?)\W*</td>')
 
-        d, path = {}, f'programas/{course}.html'
+        d, path = {}, f'data/courses/{course}.html'
         if os.path.isfile(path):
             with open(path, encoding=encoding) as f:
                 html = f.read()
@@ -52,7 +52,7 @@ class Course:  # namespace
             for key, value in Course.read_program(course, encoding, add_bib, verbose).items():
                 d[key].append(value)
 
-        return pd.DataFrame(d).set_index('Código')
+        return pd.DataFrame(d).set_index('Código') if d else None
 
 
 class Degree:  # namespace
@@ -61,15 +61,15 @@ class Degree:  # namespace
         """Extrai a lista de disciplinas de um curso de graduação.
 
         Assume que existe um arquivo HTML com o conteúdo da página no diretório
-        "cursos". O nome dever estar no formado NOME.html, onde NOME é o nome do
-        curso (ex: mecatronica).
+        "data/degrees". O nome dever estar no formado NOME.html, onde NOME é o
+        nome do curso (ex: mecatronica).
 
         O arquivo pode se obtido online (após autenticação no SIGAA):
         Ensino > Consultas > Estruturas Curriculares > Estrutura Curricular de Graduação > (Busca) > Relatório da Estrutura Curricular
         """
         componentes = r'componentes">\W+<td>(\w{3}\d{4})</td>\W+<td>\W+(.*?) - (\d+)h[.\s\S]*?<small>\W+(.*?)\W[.\s\S]*?<small>(.*?)</small>'
         cadeias = r'<td>(\w{3}\d{4}) - (.*?) - (\d+)h</td>'
-        path = f'cursos/{degree}.html'
+        path = f'data/degrees/{degree}.html'
         courses = set()
         if os.path.isfile(path):
             with open(path, encoding=encoding) as f:
