@@ -4,6 +4,47 @@ import pandas as pd
 import spacy
 
 
+class Models:  # namespace
+    class LsiModel:
+        def __init__(self, df):
+            self.id2word = gensim.corpora.Dictionary(df)
+            corpus = df.apply(self.id2word.doc2bow).to_list()
+            self.tfidf = gensim.models.TfidfModel(corpus=corpus, id2word=self.id2word)
+            self.lsi = gensim.models.LsiModel(corpus=self.tfidf[corpus], id2word=self.id2word)
+            self.index = gensim.similarities.MatrixSimilarity(self.lsi[self.tfidf[corpus]])
+
+
+class Oracle():
+    def __init__(self, course_json, preprocess, nlp_class):
+        self.preprocess = preprocess
+
+        df = pd.read_json(course_json)
+        self.disciplinas_df = df['nome']
+        text_df = df[['nome', 'ementa', 'conteudo']].apply(
+            lambda x: preprocess('. '.join(x)), axis=1)
+
+        self.nlp = nlp_class(text_df)
+
+    def _get_similar(self, query):
+        vec_bow = self.nlp.id2word.doc2bow(self.preprocess(query))
+        vec_tfidf = self.nlp.tfidf[vec_bow]
+        vec_lsi = self.nlp.lsi[vec_tfidf]
+        return sorted(enumerate(self.nlp.index[vec_lsi]), key=lambda x: x[1],
+                      reverse=True)
+
+    def run(self, query, threshold=0, num_best=5):
+        print(query)
+        j = 0
+        for i, score in self._get_similar(query):
+            if score >= threshold:
+                print(f'{score:.2f} {self.disciplinas_df.iloc[i]}')
+                if (j := j + 1) >= num_best:
+                    break
+            else:
+                break
+        print()
+
+
 class Preprocessor:
     def __init__(self, stopwords, lemmas, noise, nlp):
         self.stopwords = stopwords
@@ -33,49 +74,3 @@ class Preprocessor:
                   'seriar': 'serie'}
         nlp = spacy.load('pt_core_news_lg')
         return Preprocessor(stopwords, lemmas, noise, nlp).run
-
-
-class Oracle():
-    def __init__(self, course_json, preprocess):
-        self.preprocess = preprocess
-
-        self.df = pd.read_json(course_json)
-        self.df['text'] = self.df[['nome', 'ementa', 'conteudo']].apply(
-            lambda x: preprocess('. '.join(x)), axis=1)
-
-        self.nlp = self._make_nlp()
-
-    def _get_similar(self, query):
-        vec_bow = self.nlp.id2word.doc2bow(self.preprocess(query))
-        vec_tfidf = self.nlp.tfidf[vec_bow]
-        vec_lsi = self.nlp.lsi[vec_tfidf]
-        return sorted(enumerate(self.nlp.index[vec_lsi]), key=lambda x: x[1],
-                      reverse=True)
-
-    def _load_ementa(self, course_json):
-        df = pd.read_json(course_json)
-        df['text'] = df[['nome', 'ementa', 'conteudo']].apply(
-            lambda x: self.preprocess('. '.join(x)), axis=1)
-        return df
-
-    def _make_nlp(self):
-        from collections import namedtuple
-
-        nlp = namedtuple('NLP', 'id2word, tfidf, lsi, index')
-        nlp.id2word = gensim.corpora.Dictionary(self.df['text'])
-        corpus = self.df['text'].apply(nlp.id2word.doc2bow).to_list()
-        nlp.tfidf = gensim.models.TfidfModel(corpus=corpus, id2word=nlp.id2word)
-        nlp.lsi = gensim.models.LsiModel(corpus=nlp.tfidf[corpus],
-                                         id2word=nlp.id2word)
-        nlp.index = gensim.similarities.MatrixSimilarity(nlp.lsi[nlp.tfidf[corpus]])
-        return nlp
-
-    def run(self, query, threshold=0, num_best=5):
-        print(query)
-        j = 0
-        for i, score in self._get_similar(query):
-            if score >= threshold:
-                print(f'{score:.2f}', self.df.iloc[i]['nome'])
-                if (j := j + 1) >= num_best:
-                    break
-        print()

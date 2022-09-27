@@ -45,7 +45,8 @@ def _parse_args():
 
 def main():
     args = _parse_args()
-    oracle = creatools.Oracle(args.course, creatools.Preprocessor.pt())
+    oracle = creatools.Oracle(args.course, creatools.Preprocessor.pt(),
+                              creatools.Models.LsiModel)
 
     if args.multi_query:
         while query := input('Digite os termos ([Enter] para terminar): '):
