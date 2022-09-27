@@ -1,6 +1,6 @@
 import gensim
 import nltk
-import pandas as pd
+from preprocess import Course, Degree
 import spacy
 
 
@@ -15,15 +15,15 @@ class Models:  # namespace
 
 
 class Oracle():
-    def __init__(self, course_json, preprocess, nlp_class):
-        self.preprocess = preprocess
-
-        df = pd.read_json(course_json)
-        self.disciplinas_df = df['nome']
-        text_df = df[['nome', 'ementa', 'conteudo']].apply(
-            lambda x: preprocess('. '.join(x)), axis=1)
-
+    def __init__(self, degree, nlp_preprocess, nlp_class, verbose=False):
+        self.preprocess = nlp_preprocess
+        courses = Degree.read_courses(degree, verbose=verbose)
+        df = Course.program_df(courses, verbose=verbose)
+        self.courses_df = df['Nome']
+        text_df = df[['Nome', 'Ementa', 'Conteúdo']].apply(
+            lambda x: nlp_preprocess('. '.join(x)), axis=1)
         self.nlp = nlp_class(text_df)
+        self.verbose = verbose
 
     def _get_similar(self, query):
         vec_bow = self.nlp.id2word.doc2bow(self.preprocess(query))
@@ -37,7 +37,7 @@ class Oracle():
         j = 0
         for i, score in self._get_similar(query):
             if score >= threshold:
-                print(f'{score:.2f} {self.disciplinas_df.iloc[i]}')
+                print(f'{score:.2f} {self.courses_df.iloc[i]}')
                 if (j := j + 1) >= num_best:
                     break
             else:

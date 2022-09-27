@@ -3,13 +3,6 @@ import creatools
 
 
 def _parse_args():
-    def check_course(course):
-        from os.path import isfile
-        path = f'cursos/{course}.json'
-        if not isfile(path):
-            raise ArgumentTypeError(f'"{path}" não é um arquivo com as ementas.')
-        return path
-
     def check_positive(n):
         n = int(n)
         if n <= 0:
@@ -26,8 +19,7 @@ def _parse_args():
                             add_help=False)
     parser.add_argument('-h', '--help', action='help',
                         help='mostra esta mensagem de ajuda e termina o programa.')
-    parser.add_argument('course', type=check_course,
-                        help='nome do curso com as ementas')
+    parser.add_argument('degree', help='nome do curso')
 
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-q', '--query', nargs='+',
@@ -39,14 +31,16 @@ def _parse_args():
                         help='número máximo de tópicos a apresentar')
     parser.add_argument('-t', '--threshold', type=check_threshold, default=0.0,
                         help='valor mínimo de similaridade aceito [-1, 1]')
+    parser.add_argument('-v', '--verbose', action='store_true',
+                        help='modo verboso')
 
     return parser.parse_args()
 
 
 def main():
     args = _parse_args()
-    oracle = creatools.Oracle(args.course, creatools.Preprocessor.pt(),
-                              creatools.Models.LsiModel)
+    oracle = creatools.Oracle(args.degree, creatools.Preprocessor.pt(),
+                              creatools.Models.LsiModel, args.verbose)
 
     if args.multi_query:
         while query := input('Digite os termos ([Enter] para terminar): '):
