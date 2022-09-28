@@ -17,9 +17,9 @@ class Models:  # namespace
 class Oracle():
     def __init__(self, degree, nlp_preprocess, nlp_class, verbose=False):
         self.preprocess = nlp_preprocess
-        courses = Degree.read_components(degree, verbose=verbose)
-        df = Component.program_df(courses, verbose=verbose)
-        self.courses_df = df['Nome']
+        components = Degree.read_components(degree, verbose=verbose)
+        df = Component.program_df(components, verbose=verbose)
+        self.components_df = df['Nome']
         text_df = df[['Nome', 'Ementa', 'Conteúdo']].apply(
             lambda x: nlp_preprocess('. '.join(x)), axis=1)
         self.nlp = nlp_class(text_df)
@@ -36,7 +36,7 @@ class Oracle():
         j = 0
         for i, score in self._get_similar(query):
             if score >= threshold:
-                print(f'{score:.2f} {self.courses_df.iloc[i]}')
+                print(f'{score:.2f} {self.components_df.iloc[i]}')
                 if (j := j + 1) >= num_best:
                     break
             else:

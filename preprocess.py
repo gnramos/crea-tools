@@ -10,7 +10,7 @@ class Component:  # namespace
         """Extrai o programa da página HTML da disciplina.
 
         Assume que existe um arquivo HTML com o conteúdo da página no diretório
-        "data/courses". O nome dever estar no formado COD.html, onde COD é o
+        "data/components". O nome dever estar no formado COD.html, onde COD é o
         código da disciplina (ex: CIC0004).
 
         O arquivo pode se obtido online (após autenticação no SIGAA):
@@ -21,22 +21,22 @@ class Component:  # namespace
                              r'Objetivos:</th>[.\s\S]*?itemPrograma">\W*(.*?)\W*</td>[.\s\S]*?'
                              r'Conteúdo:</th>[.\s\S]*?itemPrograma">\W*(.*?)\W*</td>')
 
-        d, path = {}, f'data/courses/{component}.html'
+        program, path = {}, f'data/components/{component}.html'
         if os.path.isfile(path):
             with open(path, encoding=encoding) as f:
                 html = f.read()
 
             if match := pattern.search(html):
-                d['Código'] = component
-                d['Nome'], d['Ementa'], d['Conteúdo'], bib = match.groups()
+                program['Código'] = component
+                program['Nome'], program['Ementa'], program['Conteúdo'], bib = match.groups()
                 if add_bib:
-                    d['Bibliografia'] = bib
+                    program['Bibliografia'] = bib
             elif verbose:
                 print(f'No matches for {component}.')
         elif verbose:
             print(f'No file "{path}".')
 
-        return d
+        return program
 
     @staticmethod
     def program_df(course_list, encoding='ISO-8859-1', add_bib=False, verbose=False):
@@ -44,12 +44,12 @@ class Component:  # namespace
 
         Retorna um DataFrame com as informações.
         """
-        d = defaultdict(list)
+        program = defaultdict(list)
         for component in course_list:
             for key, value in Component.read_program(component, encoding, add_bib, verbose).items():
-                d[key].append(value)
+                program[key].append(value)
 
-        return pd.DataFrame(d).set_index('Código')
+        return pd.DataFrame(program).set_index('Código')
 
 
 class Degree:  # namespace

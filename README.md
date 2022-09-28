@@ -18,14 +18,14 @@ python3 -m spacy download pt_core_news_lg
 
 A documentação dos cursos (relatórios do [SIGAA](https://sigaa.unb.br/)) dever esta disponível na pasta [data](data) como arquivos HTML. Especificamente:
 - o "Relatório da Estrutura Curricular" do _curso_ na pasta [degrees](data/degrees) (acesse [aqui](https://sigaa.unb.br/sigaa/public/curso/lista.jsf?nivel=G) para a listagem de cursos), e
-- o programa de cada componente curricular na pasta [courses](data/courses), sendo cada arquivo identificado pelo código da disciplina. (acesse [aqui](https://sigaa.unb.br/sigaa/public/componentes/busca_componentes.jsf) para a listagem de componentes).
+- o "Programa Atual do Componente" curricular, para cada componente na estrutura curricular, na pasta [components](data/components), sendo cada arquivo identificado pelo código da disciplina (acesse [aqui](https://sigaa.unb.br/sigaa/public/componentes/busca_componentes.jsf) para a listagem de componentes).
 
 ## Uso
 
-O programa deve ser executado diretamente pela linha de comando, basta utilizar o seguinte comando:
+O programa deve ser executado diretamente pela linha de comando:
 
 ```bash
-python3 process.py {curso} -q {query}
+python3 process.py {query} {termos}
 ```
 
 Para mais detalhes, pode-se utilizar o comando:
@@ -33,7 +33,3 @@ Para mais detalhes, pode-se utilizar o comando:
 ```bash
 python3 process.py -h
 ```
-## Disclaimer:
-
-Para saber quais os conteúdos exigidos para cada competência e quais as atribuições de cada curso, utilizou-se como referencial uma planilha obtida a partir de um ex-conselheiro do CREA. Essa planilha não é oficial, mas estava sendo discutido pelo CREA a validade desse documento.
-

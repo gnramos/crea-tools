@@ -8,6 +8,7 @@ def _run_query(args, oracle):
 
 
 def _run_multi(args, oracle):
+    print()
     while query := input('Digite os termos ([Enter] para terminar): '):
         oracle.run(query, args.threshold, args.num_best)
 
