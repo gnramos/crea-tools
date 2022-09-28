@@ -1,6 +1,6 @@
 # crea-tools
 
-Projeto para aplicação de processamento de linguagem natural sobre a documentação de cursos de engenharia.
+Projeto para aplicação de processamento de linguagem natural sobre a documentação de cursos de engenharia. O objetivo é mapear termos específicos à documentação relevante, especificamente termos das definições de competências do [Sistema Confea/Crea](https://www.confea.org.br/sistema-profissional/o-sistema) aos programas de componentes curriculares.
 
 ## Preparo
 
