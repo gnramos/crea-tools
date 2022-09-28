@@ -2,6 +2,16 @@ from argparse import ArgumentParser, ArgumentTypeError
 import creatools
 
 
+def _run_query(args, oracle):
+    print()
+    oracle.run(' '.join(args.terms), args.threshold, args.num_best)
+
+
+def _run_multi(args, oracle):
+    while query := input('Digite os termos ([Enter] para terminar): '):
+        oracle.run(query, args.threshold, args.num_best)
+
+
 def _parse_args():
     def check_positive(n):
         n = int(n)
@@ -17,16 +27,20 @@ def _parse_args():
 
     parser = ArgumentParser(description='Busca de termos em ementas',
                             add_help=False)
+
+    subparsers = parser.add_subparsers(help='sub-comandos')
+
+    query = subparsers.add_parser('query', help='comando para query única')
+    query.add_argument('degree', help='nome do curso')
+    query.add_argument('terms', nargs='+', help='termos')
+    query.set_defaults(func=_run_query)
+
+    multi = subparsers.add_parser('multi', help='comando para múltiplas queries')
+    multi.add_argument('degree', help='nome do curso')
+    multi.set_defaults(func=_run_multi)
+
     parser.add_argument('-h', '--help', action='help',
                         help='mostra esta mensagem de ajuda e termina o programa.')
-    parser.add_argument('degree', help='nome do curso')
-
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument('-q', '--query', nargs='+',
-                       help='query única (fornecida como argumento)')
-    group.add_argument('-m', '--multi_query', action='store_true',
-                       help='múltiplas queries (recebidas iterativamente)')
-
     parser.add_argument('-n', '--num_best', type=check_positive, default=5,
                         help='número máximo de tópicos a apresentar')
     parser.add_argument('-t', '--threshold', type=check_threshold, default=0.0,
@@ -41,12 +55,7 @@ def main():
     args = _parse_args()
     oracle = creatools.Oracle(args.degree, creatools.NLPPreprocessor.pt(),
                               creatools.Models.LsiModel, args.verbose)
-
-    if args.multi_query:
-        while query := input('Digite os termos ([Enter] para terminar): '):
-            oracle.run(query)
-    else:
-        oracle.run(' '.join(args.query))
+    args.func(args, oracle)
 
 
 if __name__ == '__main__':

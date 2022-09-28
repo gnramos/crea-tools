@@ -33,7 +33,6 @@ class Oracle():
                       reverse=True)
 
     def run(self, query, threshold=0, num_best=5):
-        print(query)
         j = 0
         for i, score in self._get_similar(query):
             if score >= threshold:
