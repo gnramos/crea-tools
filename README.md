@@ -16,6 +16,10 @@ pip3 install spacy
 python3 -m spacy download pt_core_news_lg
 ```
 
+A documentação dos cursos (relatórios do [SIGAA](https://sigaa.unb.br/)) dever esta disponível na pasta [data](data) como arquivos HTML. Especificamente:
+- o "Relatório da Estrutura Curricular" do _curso_ na pasta [degrees](data/degrees) (acesse [aqui](https://sigaa.unb.br/sigaa/public/curso/lista.jsf?nivel=G) para a listagem de cursos), e
+- o programa de cada componente curricular na pasta [courses](data/courses), sendo cada arquivo identificado pelo código da disciplina. (acesse [aqui](https://sigaa.unb.br/sigaa/public/componentes/busca_componentes.jsf) para a listagem de cursos).
+
 ## Uso
 
 O programa deve ser executado diretamente pela linha de comando, basta utilizar o seguinte comando:
