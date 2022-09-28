@@ -1,6 +1,6 @@
 import gensim
 import nltk
-from preprocess import Course, Degree
+from preprocess import Component, Degree
 import spacy
 
 
@@ -17,8 +17,8 @@ class Models:  # namespace
 class Oracle():
     def __init__(self, degree, nlp_preprocess, nlp_class, verbose=False):
         self.preprocess = nlp_preprocess
-        courses = Degree.read_courses(degree, verbose=verbose)
-        df = Course.program_df(courses, verbose=verbose)
+        courses = Degree.read_components(degree, verbose=verbose)
+        df = Component.program_df(courses, verbose=verbose)
         self.courses_df = df['Nome']
         text_df = df[['Nome', 'Ementa', 'Conteúdo']].apply(
             lambda x: nlp_preprocess('. '.join(x)), axis=1)
@@ -45,7 +45,7 @@ class Oracle():
         print()
 
 
-class Preprocessor:
+class NLPPreprocessor:
     def __init__(self, stopwords, lemmas, noise, nlp):
         self.stopwords = stopwords
         self.lemmas = lemmas
@@ -73,4 +73,4 @@ class Preprocessor:
                   'Matemática': 'matematico', 'Quimica': 'quimico',
                   'seriar': 'serie'}
         nlp = spacy.load('pt_core_news_lg')
-        return Preprocessor(stopwords, lemmas, noise, nlp).run
+        return NLPPreprocessor(stopwords, lemmas, noise, nlp).run

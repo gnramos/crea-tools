@@ -39,7 +39,7 @@ def _parse_args():
 
 def main():
     args = _parse_args()
-    oracle = creatools.Oracle(args.degree, creatools.Preprocessor.pt(),
+    oracle = creatools.Oracle(args.degree, creatools.NLPPreprocessor.pt(),
                               creatools.Models.LsiModel, args.verbose)
 
     if args.multi_query:

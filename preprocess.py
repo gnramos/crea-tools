@@ -4,9 +4,9 @@ import pandas as pd
 import re
 
 
-class Course:  # namespace
+class Component:  # namespace
     @staticmethod
-    def read_program(course, encoding='ISO-8859-1', add_bib=False, verbose=False):
+    def read_program(component, encoding='ISO-8859-1', add_bib=False, verbose=False):
         """Extrai o programa da página HTML da disciplina.
 
         Assume que existe um arquivo HTML com o conteúdo da página no diretório
@@ -21,21 +21,18 @@ class Course:  # namespace
                              r'Objetivos:</th>[.\s\S]*?itemPrograma">\W*(.*?)\W*</td>[.\s\S]*?'
                              r'Conteúdo:</th>[.\s\S]*?itemPrograma">\W*(.*?)\W*</td>')
 
-        d, path = {}, f'data/courses/{course}.html'
+        d, path = {}, f'data/courses/{component}.html'
         if os.path.isfile(path):
             with open(path, encoding=encoding) as f:
                 html = f.read()
 
             if match := pattern.search(html):
-                nome, ementa, bibliografia, conteudo = match.groups()
-                d['Código'] = course
-                d['Nome'] = nome
-                d['Ementa'] = ementa
-                d['Conteúdo'] = conteudo
+                d['Código'] = component
+                d['Nome'], d['Ementa'], d['Conteúdo'], bib = match.groups()
                 if add_bib:
-                    d['Bibliografia'] = bibliografia
+                    d['Bibliografia'] = bib
             elif verbose:
-                print(f'No matches for {course}.')
+                print(f'No matches for {component}.')
         elif verbose:
             print(f'No file "{path}".')
 
@@ -48,16 +45,16 @@ class Course:  # namespace
         Retorna um DataFrame com as informações.
         """
         d = defaultdict(list)
-        for course in course_list:
-            for key, value in Course.read_program(course, encoding, add_bib, verbose).items():
+        for component in course_list:
+            for key, value in Component.read_program(component, encoding, add_bib, verbose).items():
                 d[key].append(value)
 
-        return pd.DataFrame(d).set_index('Código') if d else None
+        return pd.DataFrame(d).set_index('Código')
 
 
 class Degree:  # namespace
     @staticmethod
-    def read_courses(degree, encoding='ISO-8859-1', verbose=False):
+    def read_components(degree, encoding='ISO-8859-1', verbose=False):
         """Extrai a lista de disciplinas de um curso de graduação.
 
         Assume que existe um arquivo HTML com o conteúdo da página no diretório
@@ -67,18 +64,18 @@ class Degree:  # namespace
         O arquivo pode se obtido online (após autenticação no SIGAA):
         Ensino > Consultas > Estruturas Curriculares > Estrutura Curricular de Graduação > (Busca) > Relatório da Estrutura Curricular
         """
-        componentes = r'componentes">\W+<td>(\w{3}\d{4})</td>\W+<td>\W+(.*?) - (\d+)h[.\s\S]*?<small>\W+(.*?)\W[.\s\S]*?<small>(.*?)</small>'
-        cadeias = r'<td>(\w{3}\d{4}) - (.*?) - (\d+)h</td>'
+        # component: code, name, hours, type, nature
+        comp_re = r'componentes">\W+<td>(\w{3}\d{4})</td>\W+<td>\W+(.*?) - (\d+)h[.\s\S]*?<small>\W+(.*?)\W[.\s\S]*?<small>(.*?)</small>'
+        # chain: code, name, hours
+        chain_re = r'<td>(\w{3}\d{4}) - (.*?) - (\d+)h</td>'
         path = f'data/degrees/{degree}.html'
-        courses = set()
+        components = set()
         if os.path.isfile(path):
             with open(path, encoding=encoding) as f:
                 html = f.read()
-            for course, name, hours, course_type, nature in re.findall(componentes, html):
-                courses.add(course)
-            for course, name, hours in re.findall(cadeias, html):
-                courses.add(course)
+            components.update(match[0] for match in re.findall(comp_re, html))
+            components.update(match[0] for match in re.findall(chain_re, html))
         elif verbose:
             print(f'No file "{path}".')
 
-        return courses
+        return components
